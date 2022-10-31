@@ -14,7 +14,7 @@ An approved module means we have checked against a specific criterion, if the mo
 When your module is ‘Approved’ it will receive an ‘Approved’ badge on the Puppet Forge.
 Here is an example of what an ‘Approved’ module will look like:
 
-![Example of an approved module](https://github.com/puppetlabs/content-and-tooling-team/blob/main/content/blog/posts/images/puppet_approved_module.png)
+![Example of an approved module](../../../images/puppet_approved_module.png)
 
 ## How can I get my module ‘Approved’?
 
