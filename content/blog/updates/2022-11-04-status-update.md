@@ -1,11 +1,24 @@
 ---
-author: "chelnak"
+author: "LukasAud"
 categories:
   - updates
 date: "2022-11-04"
 blog_tags: null
 title: "2022-11-04: Content & Tooling Team Status Update"
 ---
+
+## First Friday of November
+
+As we leave October and start packing our halloween decorations, some of us can already hear the classic christmas songs playing in the distance. 
+Almost no time left before we start hearing "All I want for Christmas is you" in every single store everywhere.
+
+## Community and releases
+
+As usual, we had a busy community day, happily merging up to 12 community Pull Requests. Big thanks to everyone for your contributions.
+We also had the chance to cut a release for Apache and a major one for Chocolatey, where we addressed some incompatibility issues.
+
+## Steady work
+Most of our team is still working on the background to complete some of our highest priority projects.
 
 ## Community Contributions
 
