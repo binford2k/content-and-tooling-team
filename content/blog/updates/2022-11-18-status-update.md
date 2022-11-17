@@ -6,15 +6,23 @@ date: "2022-11-17"
 blog_tags: null
 title: "2022-11-18: Content & Tooling Team Status Update"
 ---
+
 Happy Friday everyone! Hope you are all keeping well and are beginning to wrap up warm, drink some hot chocolate and stick on some festive movies as we welcome back the darker evenings. 
+
 <iframe src="https://giphy.com/embed/NU9BPThD9kPpDNblHO" width="480" height="270" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/christmas-snow-winter-NU9BPThD9kPpDNblHO">via GIPHY</a></p>
 
 ## Codebase Hardening
+
 [Lukas](https://github.com/LukasAud) has been continuing his stellar work on the hardening of our module codebases. This work helps to ensure that our supported modules are protected from malicious command injection by appropriately sanisitising inputted commands.  
+
 ## Updating gem requirements for ruby 3.0/3.1
+
 With our recent removal of puppet-module-gems from our modules, [David](https://github.com/david22swan) has been working hard behind the scenes to ensure that our modules continue to work as expected for Ruby 3.0 and 3.1. 
+
 ## Another successful community day
+
 As always we would like to thank each of our community contributors for continuing to produce some really great Pull Requests. This week, we were able to release [puppetlabs-apache](https://github.com/puppetlabs/puppetlabs-apache) 8.4.0, and merge 5 PRs. 
+
 ## Community Contributions
 
 We'd like to thank the following people in the Puppet Community for their contributions over this past week:
