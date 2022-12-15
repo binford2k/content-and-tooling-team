@@ -11,6 +11,12 @@ title: "2022-12-16: Content & Tooling Team Status Update"
 Finally, Christmas and our Winter Holidays are already around the corner, with only one more week to go. With the prospect of a nice winter break with our families in our minds, we have been busy working to ensure that
 we are ready for what's to come next year.
 
+## Apache
+We are happy to announce that as of December the 15th the Apache module has dropped support for Apache 2.2.
+This has been along time coming and something that many in the team our excited about. Thank you to [Ekohl][Ekohl] for getting this work done, getting the PR up and finished before we'd even had a change to begin the work ourselves.
+Also included in this major release is the removal of the long deprecated a2mod types/providers, with the PR for this put up by the amazing [Bastelfreak][Bastelfreak].
+Between the two of them this has resulted in the removal of over 1800 lines of outdated and unnecessary code from the module, a lovely gift for the end of the year.
+
 ## Kubernetes
 Our Kubernetes module experienced a setback recently as we tried to implement some a codebase hardening update in it that did not work as intended. However, thanks to [chelnak][chelnak] and the community's involvement, we
 are happy to announce that Kubernetes is back in a healthy state and freshly released in the forge. We would like to give a big shout out to [deric][deric] and his amazing work for helping us get this release out of the door.
@@ -48,9 +54,10 @@ We'd like to thank the following people in the Puppet Community for their contri
 The following modules were released this week:
 
 - [`puppetlabs-docker`][puppetlabs-docker] (`6.0.2`)
-- [`puppetlabs-apache`][puppetlabs-apache] (`8.6.0`)
+- [`puppetlabs-apache`][puppetlabs-apache] (`9.0.0`)
 - [`puppetlabs-firewall`][puppetlabs-firewall] (`4.0.1`)
 - [`puppetlabs-sqlserver`][puppetlabs-sqlserver] (`3.2.1`)
+- [`puppetlabs-kubernetes`][puppetlabs-kubernetes] (`7.0.0`)
 
   [puppetlabs-docker]: https://github.com/puppetlabs/puppetlabs-docker
   [puppetlabs-apache]: https://github.com/puppetlabs/puppetlabs-apache
