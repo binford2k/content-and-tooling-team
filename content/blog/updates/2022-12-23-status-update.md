@@ -15,7 +15,7 @@ title: "2022-12-23: Content & Tooling Team Status Update"
 
 As a team we would like to take the time to thank everyone for their contributions over the past year, we really appreciate the effort it takes to get things over the line. This will be our last update of the year as the team takes some time to relax and recharge in preparation for 2023.
 
-<iframe src="https://giphy.com/embed/NU9BPThD9kPpDNblHO" width="480" height="270" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/bilbareed-holiday-season-happy-holidays-5tkB6yiPZkHaZ7t44F">via GIPHY</a></p>
+<iframe src="https://giphy.com/embed/5tkB6yiPZkHaZ7t44F" width="480" height="270" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/bilbareed-holiday-season-happy-holidays-5tkB6yiPZkHaZ7t44F">via GIPHY</a></p>
 
 ## Team Building with Nybble
 
