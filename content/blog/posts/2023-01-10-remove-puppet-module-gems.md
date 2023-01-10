@@ -11,7 +11,7 @@ With the updates made to bundler we no longer require as tight a control of our 
 This is especially relevant now as it means that the `puppet-modules-gems` have not been updated to account for Ruby 3, which the upcoming Puppet 9 release will release with, meaning that any module that has not yet converted to the new format will be unable to run on Puppet 9.
 
 ## What To Do
-Thankfully, the solution to this is relatively simple, at least for those who are using our PDK templates. The only thing that you will need to do is run an update against the main branch of the templates and the changes made to it will be consumed, replacing `puppet-module-gems` in the Gemfile with the multiple seperate gems that it consisted off.
+Thankfully, the solution to this is relatively simple, at least for those who are using our PDK templates. The only thing that you will need to do is run an update against the main branch of the templates and the changes made to it will be consumed, replacing `puppet-module-gems` in the Gemfile with the multiple seperate gems that it consisted off. An example of this can be seen on many of our modules, with one example shown [here](https://github.com/puppetlabs/puppetlabs-apache/pull/2324).
 
 In the event that you are not using the pdk template then you will need to update your Gemfiles in another way, however this to should not be much of an issue. If you are using the PDK but with your own version of the template, simply look at the config default values [here](https://github.com/puppetlabs/pdk-templates/blob/main/config_defaults.yml#L556) and copy what you need into your own code, updating them according to your own needs.
 
