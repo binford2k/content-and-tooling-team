@@ -40,11 +40,6 @@ We'd like to thank the following people in the Puppet Community for their contri
 - [`puppetlabs-websphere_application_server#249`][puppetlabs-websphere_application_server-pr-249]: "Fix was files ownership", thanks to [biamandei][biamandei]
 - [`rspec-puppet#36`][rspec-puppet-pr-36]: "Default to current versions of Puppet and Facter", thanks to [ekohl][ekohl]
 
-## New Module / Gem Releases
-
-The following modules were released this week:
-
-
   [gavin]: https://github.com/GSPatton
   [craig]: https://github.com/chelnak
   [david]: https://github.com/david22swan
