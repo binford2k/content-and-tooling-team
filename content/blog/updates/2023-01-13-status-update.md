@@ -9,7 +9,7 @@ title: "2023-01-13: Content & Tooling Team Status Update"
 ## First Week with the Whole Team Back
 
 Whelp, thats it, Christmass is officially done for the year and we are all back from our Holidays.
-We all had some fun, I myself spent Christmass Morning swimming in the ocean near Bangor, and we are now back and ready to get some work done!
+We all had some fun, I myself spent Christmas morning swimming in the ocean near Bangor, and we are now back and ready to get some work done!
 
 ## One Year and Counting
 
