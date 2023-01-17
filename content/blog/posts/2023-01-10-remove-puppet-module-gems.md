@@ -6,7 +6,7 @@ github_repo: "" # Disable the edit commands
 ---
 
 ## What are `puppet-module-gems` and why are they now considered harmful?
-Okay, that might be a bit melodramatic take on the situation, but the `puppet-module-gems` really did serve a useful purpose at one point. Let's go back over why it exists and what's changed in the meantime.
+Okay, that might be a bit of a melodramatic take on the situation, but the `puppet-module-gems` really did serve a useful purpose at one point. Let's go back over why it exists and what's changed in the meantime.
 
 We'll start with Bundler--a local environment manager for Ruby projects.
 It runs a Ruby project with all of its required dependencies in a sandbox, meaning that you don't need to install gems globally.
@@ -32,7 +32,7 @@ The situation certainly wasn't ideal, but it was a workable compromise.
 Until Bundler got smarter, learned how to resolve Ruby version dependencies, and made this workaround no longer necessary.
 
 ## What's Changing
-With these Bundler updates, we no longer require such tight control over dependencies, since Bundler will do the right thing and resolve them properly. We have decided to stop maintaining the `puppet-module-gems` and instead move fully to managing our gem dependencies with the PDK templates. This will be easier to maintain in the long term and will better allow downstream users to modify according to their own needs.
+With these Bundler updates, we no longer require such tight control over dependencies, since Bundler will do the right thing and resolve them properly, taking gems' supported Ruby versions into account. We have decided to stop maintaining the `puppet-module-gems` and instead move fully to managing our gem dependencies with the PDK templates. This will be easier to maintain in the long term and will better allow downstream users to modify according to their own needs.
 
 This is especially relevant now as it means that the `puppet-modules-gems` have not been updated to account for Ruby 3, which the upcoming Puppet 8 release will release with. **This means that any module that has not yet converted to the new format will be not be testable on Puppet 8**.
 
