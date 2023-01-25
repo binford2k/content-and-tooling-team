@@ -90,6 +90,11 @@
         "description": "A simple module to demonstrate managing /etc/motd or Windows Logon Message as a template"
     },
     {
+        "name": "puppetlabs-mount_iso",
+        "owner": "puppetlabs",
+        "description": "Mount ISO images and ensure the drive letter they are mounted to"
+    },
+    {
         "name": "puppetlabs-mysql",
         "owner": "puppetlabs",
         "description": "Installs, configures, and manages the MySQL service."
