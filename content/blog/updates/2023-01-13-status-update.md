@@ -13,13 +13,13 @@ We all had some fun, I myself spent Christmas morning swimming in the ocean near
 
 ## One Year and Counting
 
-It's with some pride that I can announce that our own [Lukas](lukas) has hit his first year with the team :)!
+It's with some pride that I can announce that our own [Lukas][lukas] has hit his first year with the team :)!
 He's done some great work over the year he's been with us and I'm sure he will do even more!
 
 ## CfgMgmtCamp
 
-Happy to say that both [Craig](craig) and [Gavin](gavin) have been invited to speak at the [CfgMgmtCamp](cfg) in Belgium at the start of Febuary :)!
-[I](david) will also be attending, though not presenting and we are all looking forward to getting to see some of you in person, and on a personal note, I am looking forward to sharing my love of Tequila with as many of you as I can.
+Happy to say that both [Craig][craig] and [Gavin][gavin] have been invited to speak at the [CfgMgmtCamp][cfg] in Belgium at the start of Febuary :)!
+[I][david] will also be attending, though not presenting and we are all looking forward to getting to see some of you in person, and on a personal note, I am looking forward to sharing my love of Tequila with as many of you as I can.
 
 ## Community Contributions
 

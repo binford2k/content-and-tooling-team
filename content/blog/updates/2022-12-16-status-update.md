@@ -63,6 +63,7 @@ The following modules were released this week:
   [puppetlabs-apache]: https://github.com/puppetlabs/puppetlabs-apache
   [puppetlabs-firewall]: http://github.com/puppetlabs/puppetlabs-firewall
   [puppetlabs-sqlserver]: https://github.com/puppetlabs/puppetlabs-sqlserver
+  [puppetlabs-kubernetes]: https://github.com/puppetlabs/puppetlabs-kubernetes
   [puppetlabs-apache-pr-2355]: https://github.com/puppetlabs/puppetlabs-apache/pull/2355
   [fraenki]: https://github.com/fraenki
   [puppetlabs-apache-pr-2353]: https://github.com/puppetlabs/puppetlabs-apache/pull/2353
