@@ -1,0 +1,76 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Content and Tooling – Usage</title><link>https://puppetlabs.github.io/content-and-tooling-team/docs/litmus/usage/</link><description>Recent content in Usage on Content and Tooling</description><generator>Hugo -- gohugo.io</generator><atom:link href="https://puppetlabs.github.io/content-and-tooling-team/docs/litmus/usage/index.xml" rel="self" type="application/rss+xml"/><item><title>Docs: Quick Start Guide</title><link>https://puppetlabs.github.io/content-and-tooling-team/docs/litmus/usage/converting-modules-to-use-litmus/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://puppetlabs.github.io/content-and-tooling-team/docs/litmus/usage/converting-modules-to-use-litmus/</guid><description>
+&lt;p>The following example walks you through enabling Litmus testing in a module.&lt;/p>
+&lt;p>The process involves editing or adding code to the following files:&lt;/p>
+&lt;ol>
+&lt;li>The &lt;code>Gemfile&lt;/code>&lt;/li>
+&lt;li>The &lt;code>Rakefile&lt;/code>&lt;/li>
+&lt;li>The&lt;code>.fixtures.yml&lt;/code> file&lt;/li>
+&lt;li>The &lt;code>spec_helper_acceptance.rb&lt;/code> file&lt;/li>
+&lt;li>The &lt;code>spec_helper_acceptance_local.rb&lt;/code> file&lt;/li>
+&lt;/ol>
+&lt;h2 id="before-you-begin">Before you begin&lt;/h2>
+&lt;p>This guide assumes your module is compatible with &lt;a href="https://puppet.com/docs/pdk/1.x/pdk.html">Puppet Development Kit (PDK)&lt;/a>,
+meaning it was either created with &lt;code>pdk new module&lt;/code> or has been converted to use PDK using the &lt;code>pdk convert&lt;/code> command.
+To verify that your module is compatible with PDK, look in the modules &lt;code>metadata.json&lt;/code> file and see whether there is an entry that states the PDK version.
+It will look something like &lt;code>&amp;quot;pdk-version&amp;quot;: &amp;quot;1.18.0&amp;quot;&lt;/code>.
+The PDK ships litmus as an experimental component.&lt;/p>
+&lt;p>To enable it, follow the steps below.&lt;/p>
+&lt;h2 id="1-add-required-development-dependencies">1. Add required development dependencies&lt;/h2>
+&lt;p>Inside the root directory of your module, add the following entries to the &lt;code>.fixtures.yml&lt;/code>:&lt;/p>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-yaml" data-lang="yaml">---
+&lt;span style="color:#ff79c6">fixtures&lt;/span>:
+&lt;span style="color:#ff79c6">repositories&lt;/span>:
+&lt;span style="color:#ff79c6">facts&lt;/span>: &lt;span style="color:#f1fa8c">&amp;#39;https://github.com/puppetlabs/puppetlabs-facts.git&amp;#39;&lt;/span>
+&lt;span style="color:#ff79c6">puppet_agent&lt;/span>: &lt;span style="color:#f1fa8c">&amp;#39;https://github.com/puppetlabs/puppetlabs-puppet_agent.git&amp;#39;&lt;/span>
+&lt;span style="color:#ff79c6">provision&lt;/span>: &lt;span style="color:#f1fa8c">&amp;#39;https://github.com/puppetlabs/provision.git&amp;#39;&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="2-create-the-specspec_helper_acceptancerb-file">2. Create the &lt;code>spec/spec_helper_acceptance.rb&lt;/code> file&lt;/h2>
+&lt;p>Inside the &lt;code>spec&lt;/code> folder of the module, create a &lt;code>spec_helper_acceptance.rb&lt;/code> file with the following contents:&lt;/p>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-ruby" data-lang="ruby">&lt;span style="color:#6272a4"># frozen_string_literal: true&lt;/span>
+&lt;span style="color:#8be9fd;font-style:italic">require&lt;/span> &lt;span style="color:#f1fa8c">&amp;#39;puppet_litmus&amp;#39;&lt;/span>
+PuppetLitmus&lt;span style="color:#ff79c6">.&lt;/span>configure!
+&lt;span style="color:#8be9fd;font-style:italic">require&lt;/span> &lt;span style="color:#f1fa8c">&amp;#39;spec_helper_acceptance_local&amp;#39;&lt;/span> &lt;span style="color:#ff79c6">if&lt;/span> File&lt;span style="color:#ff79c6">.&lt;/span>file?(File&lt;span style="color:#ff79c6">.&lt;/span>join(File&lt;span style="color:#ff79c6">.&lt;/span>dirname(__FILE__), &lt;span style="color:#f1fa8c">&amp;#39;spec_helper_acceptance_local.rb&amp;#39;&lt;/span>))
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>This file will later become managed by the PDK. For local changes, see the next step.&lt;/p>
+&lt;h2 id="3-create-the-specspec_helper_acceptance_localrb-file">3. Create the &lt;code>spec/spec_helper_acceptance_local.rb&lt;/code> file&lt;/h2>
+&lt;p>&lt;em>&lt;strong>Optional:&lt;/strong>&lt;/em> For module-specific methods to be used during acceptance testing, create a &lt;code>spec/spec_helper_acceptance_local.rb&lt;/code> file. This will be loaded at the start of each test run. If you need to use any of the Litmus methods in this file, include Litmus as a singleton class:&lt;/p>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-ruby" data-lang="ruby">&lt;span style="color:#6272a4"># frozen_string_literal: true&lt;/span>
+&lt;span style="color:#8be9fd;font-style:italic">require&lt;/span> &lt;span style="color:#f1fa8c">&amp;#39;singleton&amp;#39;&lt;/span>
+&lt;span style="color:#ff79c6">class&lt;/span> &lt;span style="color:#50fa7b">Helper&lt;/span>
+&lt;span style="color:#ff79c6">include&lt;/span> Singleton
+&lt;span style="color:#ff79c6">include&lt;/span> PuppetLitmus
+&lt;span style="color:#ff79c6">end&lt;/span>
+&lt;span style="color:#ff79c6">def&lt;/span> &lt;span style="color:#50fa7b">some_helper_method&lt;/span>
+Helper&lt;span style="color:#ff79c6">.&lt;/span>instance&lt;span style="color:#ff79c6">.&lt;/span>bolt_run_script(&lt;span style="color:#f1fa8c">&amp;#39;path/to/file&amp;#39;&lt;/span>)
+&lt;span style="color:#ff79c6">end&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="4-add-tests-to-specacceptance">4. Add tests to &lt;code>spec/acceptance&lt;/code>&lt;/h2>
+&lt;p>You can find &lt;a href="https://puppetlabs.github.io/content-and-tooling-team/content-and-tooling-team/docs/litmus/usage/testing/litmus-test-examples/">litmus test examples&lt;/a> on their own page.&lt;/p></description></item><item><title>Docs: Commands</title><link>https://puppetlabs.github.io/content-and-tooling-team/docs/litmus/usage/commands/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://puppetlabs.github.io/content-and-tooling-team/docs/litmus/usage/commands/</guid><description/></item><item><title>Docs: Testing</title><link>https://puppetlabs.github.io/content-and-tooling-team/docs/litmus/usage/testing/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://puppetlabs.github.io/content-and-tooling-team/docs/litmus/usage/testing/</guid><description/></item><item><title>Docs: Helper functions</title><link>https://puppetlabs.github.io/content-and-tooling-team/docs/litmus/usage/litmus-helper-functions/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://puppetlabs.github.io/content-and-tooling-team/docs/litmus/usage/litmus-helper-functions/</guid><description>
+&lt;p>Inside of the Litmus gem, there are three distinct sets of functions:&lt;/p>
+&lt;ul>
+&lt;li>Rake tasks for the CLI that allows you to use the Litmus commands (provision, install an agent, install a module and run tests.). Run &lt;code>pdk bundle exec rake -T&lt;/code> to get a list of available rake tasks.&lt;/li>
+&lt;li>Helper functions for serverspec / test. These apply manifests or run shell commands. For more information, see &lt;a href="https://www.rubydoc.info/gems/puppet_litmus/PuppetLitmus/PuppetHelpers">Puppet Helpers&lt;/a>&lt;/li>
+&lt;li>Helper Functions for Bolt inventory file manipulation. For more information, see &lt;a href="https://www.rubydoc.info/gems/puppet_litmus/PuppetLitmus/InventoryManipulation">Inventory Manipulation&lt;/a>.&lt;/li>
+&lt;/ul></description></item><item><title>Docs: Tools</title><link>https://puppetlabs.github.io/content-and-tooling-team/docs/litmus/usage/tools-included-in-litmus/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://puppetlabs.github.io/content-and-tooling-team/docs/litmus/usage/tools-included-in-litmus/</guid><description>
+&lt;p>Litmus wraps functionality from other tools, providing a rake interface for you to develop modules.&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://github.com/puppetlabs/bolt">Bolt&lt;/a> is an open source orchestration tool that automates the manual work it takes to maintain your infrastructure. Litmus is built on top of bolt, so it natively handles SSH, WinRM and Docker. The inventory file specifies the protocol to use for each target, when using litmus this can be found in &lt;code>spec/fixtures/litmus_inventory.yaml&lt;/code>, along with connection specific information. Litmus uses Bolt to execute module tasks.&lt;/li>
+&lt;li>&lt;a href="https://serverspec.org/">Serverspec&lt;/a> lets you check your servers are configured correctly.&lt;/li>
+&lt;li>Puppet Development Kit (PDK) provides a complete module structure, templates for classes, defined types, and tasks, and a testing infrastructure.&lt;/li>
+&lt;li>&lt;a href="https://github.com/puppetlabs/litmus_image">Litmus Image&lt;/a> is a group of Docker build files. They are specifically designed to set up systemd/upstart on various nix images. This is a prerequisite for testing services with Puppet in Docker images.&lt;code>litmus_image&lt;/code> generates an inventory file, that contains connection information for each system instance. This is used by subsequent commands or by rspec.&lt;/li>
+&lt;/ul>
+&lt;p>These tools are built into the Litmus commands:&lt;/p>
+&lt;h4 id="provision">Provision&lt;/h4>
+&lt;p>To provision systems we created a &lt;a href="https://github.com/puppetlabs/provision">module&lt;/a> that will provision containers / images / hardware in ABS (internal to Puppet) and Docker instances. Provision is extensible, so other provisioners can be added - please raise an &lt;a href="https://github.com/puppetlabs/provision/issues">issue&lt;/a> on the Provision repository, or create your own and submit a &lt;a href="https://github.com/puppetlabs/provision/pulls">PR&lt;/a>!&lt;/p>
+&lt;p>rake task -&amp;gt; litmus -&amp;gt; bolt -&amp;gt; provision -&amp;gt; docker
+-&amp;gt; vagrant
+-&amp;gt; abs (internal)
+-&amp;gt; vmpooler (internal)&lt;/p>
+&lt;h4 id="installing-an-agents">Installing an agents&lt;/h4>
+&lt;p>rake task -&amp;gt; bolt -&amp;gt; puppet_agent module&lt;/p>
+&lt;h4 id="installing-modules">Installing modules&lt;/h4>
+&lt;p>PDK builds the module tar file and is copied to the target using Bolt. On the target machine, run &lt;code>puppet module install&lt;/code>, specifying the tar file. This installs the dependencies listed in the metadata.json of the built module.&lt;/p>
+&lt;p>rake task -&amp;gt; pdk -&amp;gt; bolt&lt;/p>
+&lt;h4 id="running-tests">Running tests&lt;/h4>
+&lt;p>rake task -&amp;gt; serverspec -&amp;gt; rspec&lt;/p>
+&lt;h4 id="tearing-down-targets">Tearing down targets&lt;/h4>
+&lt;p>rake task -&amp;gt; bolt provision -&amp;gt; docker
+-&amp;gt; abs (internal)
+-&amp;gt; vmpooler&lt;/p></description></item></channel></rss>

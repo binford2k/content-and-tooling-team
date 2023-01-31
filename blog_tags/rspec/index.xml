@@ -2,7 +2,7 @@
 &lt;p>This week sees version &lt;code>v5.5.0&lt;/code> of the &lt;a href="https://forge.puppet.com/puppetlabs/apache">puppetlabs-apache&lt;/a> module released.
 There are a lot of new features within this release - check out the &lt;a href="https://forge.puppet.com/puppetlabs/apache/changelog#v550-2020-07-01">CHANGELOG entry for this version&lt;/a> to see what&amp;rsquo;s included.&lt;/p>
 &lt;p>The last release of this module was &lt;code>v5.4.0&lt;/code> on &lt;code>2020-01-23&lt;/code>, over 5 months ago.
-Currently the IAC Team is responsible for [these supported modules]({% link modules.html %}) and [tools]({% link tools.html %}).
+Currently the IAC Team is responsible for these supported &lt;a href="https://puppetlabs.github.io/content-and-tooling-team/content-and-tooling-team/modules/">modules&lt;/a> and &lt;a href="https://puppetlabs.github.io/content-and-tooling-team/content-and-tooling-team/tools/">tools&lt;/a>.
 As a small team we always continue to improve our processes to ensure we&amp;rsquo;re maximising our time and efforts.
 Still, the gap in time between the release of &lt;code>v5.4.0&lt;/code> and &lt;code>v5.5.0&lt;/code> of the &lt;a href="https://forge.puppet.com/puppetlabs/apache">puppetlabs-apache&lt;/a> module was a concern for us.
 What happened and how did we address this issue?&lt;/p>

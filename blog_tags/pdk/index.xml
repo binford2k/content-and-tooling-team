@@ -469,7 +469,7 @@ We&amp;rsquo;re all here for you during your recovery and are very much looking 
 &lt;p>Thank you to &lt;a href="https://github.com/akerl-unpriv">akerl-unpriv&lt;/a> for his contribution to the &lt;a href="https://github.com/puppetlabs-firewall">puppetlabs-firewall&lt;/a> module. We now have support for the &lt;code>cgroup&lt;/code> flag in iptables.
 Thanks to &lt;a href="https://github.com/crazymind1337">crazymind1337&lt;/a> for &lt;a href="https://github.com/puppetlabs/puppetlabs-docker/pull/607">the great effort&lt;/a> cleaning up the &lt;code>puppetlabs-docker&lt;/code> repo. It’s fantastic to see the open source community committed to keeping the standard high.&lt;/p>
 &lt;h2 id="new-surprises">New surprises&lt;/h2>
-&lt;p>We added a [docs page]({% link docs.html %}), where we will post some of our architecture docs and some “how to” documents that might be helpful in the future.&lt;/p>
+&lt;p>We added a &lt;a href="https://puppetlabs.github.io/content-and-tooling-team/content-and-tooling-team/docs/">docs page&lt;/a>, where we will post some of our architecture docs and some “how to” documents that might be helpful in the future.&lt;/p>
 &lt;h2 id="paula-continues-her-way-back-to-puppet-goodies">Paula continues her way back to Puppet goodies&lt;/h2>
 &lt;p>This is what she said when she was working on puppetlabs-apt release:
 &lt;em>Massive shout out to Danny. I have returned from maternity leave and started working on my first release from I finished up in June 2019 and it is just like magic! The automated generation of the change log, reference documentation and tagging is just brilliant! Has definitely removed one of the biggest pain points when releasing.&lt;/em>&lt;/p>

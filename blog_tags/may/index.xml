@@ -1,0 +1,18 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Content and Tooling – may</title><link>https://puppetlabs.github.io/content-and-tooling-team/blog_tags/may/</link><description>Recent content in may on Content and Tooling</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Fri, 13 May 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://puppetlabs.github.io/content-and-tooling-team/blog_tags/may/index.xml" rel="self" type="application/rss+xml"/><item><title>Blog: 2022-05-13: Content &amp; Tooling Team Status Update</title><link>https://puppetlabs.github.io/content-and-tooling-team/blog/updates/2022-05-13-status-update/</link><pubDate>Fri, 13 May 2022 00:00:00 +0000</pubDate><guid>https://puppetlabs.github.io/content-and-tooling-team/blog/updates/2022-05-13-status-update/</guid><description>
+&lt;h2 id="this-week">This week&amp;hellip;&lt;/h2>
+&lt;p>We have been busy working on a number of items, from internal tools that our team uses on a regular basis to work more efficiently, to the module side where we are constantly keeping an eye to make sure everything
+works the way its supposed to.&lt;/p>
+&lt;p>On the tooling half of our workload, our engineers have been working on further bugfixing our latest version of PRM. On the other side of the balance, our modules work has been mostly focused on the re-certification
+process of Kubernetes and some heavy maintenance work on the mySQL module. Adding to this, some minor changes have also been merged on our Satellite and Apache modules.&lt;/p>
+&lt;p>Finally, we are excited to announce the return of community day next week. If you want more information about the topic, check out our &lt;a href="https://github.com/puppetlabs/content-and-tooling-team/blob/main/content/blog/posts/2022-05-11-return-of-community-day.md">latest blogpost&lt;/a>.&lt;/p>
+&lt;h2 id="community-contributions">Community Contributions&lt;/h2>
+&lt;p>We&amp;rsquo;d like to thank the following people in the Puppet Community for their contributions over this past week:&lt;/p>
+&lt;ul>
+&lt;li>[&lt;code>puppetlabs-apache#2212&lt;/code>][puppetlabs-apache-pr-2212]: &amp;ldquo;mod_auth_gssapi: Add support for &lt;code>GssapiBasicAuth&lt;/code>.&amp;rdquo;, thanks to [olifre][olifre]&lt;/li>
+&lt;li>[&lt;code>puppetlabs-apache#2206&lt;/code>][puppetlabs-apache-pr-2206]: &amp;ldquo;init.pp: fix typo in purge_vdir documentation&amp;rdquo;, thanks to [kenyon][kenyon]&lt;/li>
+&lt;li>[&lt;code>puppetlabs-chocolatey#270&lt;/code>][puppetlabs-chocolatey-pr-270]: &amp;ldquo;update holdable feature&amp;rdquo;, thanks to [rico89][rico89]&lt;/li>
+&lt;li>[&lt;code>puppetlabs-haproxy#506&lt;/code>][puppetlabs-haproxy-pr-506]: &amp;ldquo;[MODULES-11274] Allow usage of parameter manage_config_dir&amp;rdquo;, thanks to [tuxmea][tuxmea]&lt;/li>
+&lt;li>[&lt;code>puppetlabs-kubernetes#542&lt;/code>][puppetlabs-kubernetes-pr-542]: &amp;ldquo;Fix #541&amp;rdquo;, thanks to [nickperry][nickperry] and the following people who helped get it over the line ([daianamezdrea][daianamezdrea])&lt;/li>
+&lt;li>[&lt;code>puppetlabs-kubernetes#540&lt;/code>][puppetlabs-kubernetes-pr-540]: &amp;ldquo;Remove cgroup-driver arg to avoid deprecation warnings&amp;rdquo;, thanks to [treydock][treydock]&lt;/li>
+&lt;li>[&lt;code>puppetlabs-stdlib#1241&lt;/code>][puppetlabs-stdlib-pr-1241]: &amp;ldquo;Update load_module_metadata.rb to correct capitalisation in strings documentartion&amp;rdquo;, thanks to [davidsandilands][davidsandilands]&lt;/li>
+&lt;/ul></description></item></channel></rss>

@@ -54,7 +54,7 @@ The IAC team will try and answer any questions/concerns the community may have o
 &lt;li>&lt;strong>&lt;a href="https://github.com/puppetlabs/puppetlabs-mysql/pull/1305">&lt;code>puppetlabs-mysql#1305&lt;/code>&lt;/a>:&lt;/strong> &lt;a href="https://github.com/evgenkisel">Evgeny Kisel&lt;/a> adding a bug-fix for mysql managed directories as specified in &lt;a href="https://tickets.puppetlabs.com/browse/MODULES-10679">MODULES-10679&lt;/a>&lt;/li>
 &lt;/ul>
 &lt;h2 id="tools">Tools&lt;/h2>
-&lt;p>This week we have organised our first all day PR review for all the [tools]({% link tools.html %}) currently under the team&amp;rsquo;s supervision.
+&lt;p>This week we have organised our first all day PR review for all the &lt;a href="https://puppetlabs.github.io/content-and-tooling-team/content-and-tooling-team/tools/">tools&lt;/a> currently under the team&amp;rsquo;s supervision.
 This was a very productive day as we have managed to get a clear view across the team on the current development work on all our tool repositories and close out/merge a lot of PRs.
 This will make the triage process a lot easier in the future.
 Thanks to everyone in the community who&amp;rsquo;s chipping in with fixes and features!&lt;/p>

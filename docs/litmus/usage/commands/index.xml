@@ -1,0 +1,184 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Content and Tooling – Commands</title><link>https://puppetlabs.github.io/content-and-tooling-team/docs/litmus/usage/commands/</link><description>Recent content in Commands on Content and Tooling</description><generator>Hugo -- gohugo.io</generator><atom:link href="https://puppetlabs.github.io/content-and-tooling-team/docs/litmus/usage/commands/index.xml" rel="self" type="application/rss+xml"/><item><title>Docs: Command reference</title><link>https://puppetlabs.github.io/content-and-tooling-team/docs/litmus/usage/commands/command-reference/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://puppetlabs.github.io/content-and-tooling-team/docs/litmus/usage/commands/command-reference/</guid><description>
+&lt;h3 id="debug">Debug&lt;/h3>
+&lt;p>Litmus has the ability to display more information when it is running, this can help you diagnose some issues.&lt;/p>
+&lt;pre>&lt;code>export DEBUG=true
+&lt;/code>&lt;/pre>&lt;h3 id="useful-docker-commands">Useful Docker commands&lt;/h3>
+&lt;p>To list all docker images, including stopped ones, run:&lt;/p>
+&lt;pre>&lt;code>docker ps -a
+&lt;/code>&lt;/pre>&lt;p>You will get output similar to:&lt;/p>
+&lt;pre>&lt;code>docker container ls -a
+CONTAINER ID IMAGE COMMAND CREATED STATUS PORTS NAMES
+e7bc7e5b3d9b litmusimage/oraclelinux7 &amp;quot;/bin/sh -c /usr/sbi…&amp;quot; About a minute ago Up About a minute 0.0.0.0:2225-&amp;gt;22/tcp litmusimage_oraclelinux7_-2225
+ae94def06077 litmusimage/oraclelinux6 &amp;quot;/bin/sh -c /sbin/in…&amp;quot; 3 minutes ago Up 3 minutes 0.0.0.0:2224-&amp;gt;22/tcp litmusimage_oraclelinux6_-2224
+80b22735494e litmusimage/centos6 &amp;quot;/bin/sh -c /sbin/in…&amp;quot; 5 minutes ago Up 5 minutes 0.0.0.0:2223-&amp;gt;22/tcp litmusimage_centos6_-2223
+b7923a25f95b ubuntu:14.04 &amp;quot;/bin/bash&amp;quot; 6 weeks ago Exited (255) 4 weeks ago 0.0.0.0:2222-&amp;gt;22/tcp ubuntu_14.04-2222
+&lt;/code>&lt;/pre>&lt;p>To stop and remove an image, run:&lt;/p>
+&lt;pre>&lt;code>docker rm -f ubuntu_14.04-2222
+&lt;/code>&lt;/pre>&lt;p>To connect via ssh to the Docker image, run:&lt;/p>
+&lt;pre>&lt;code>ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no root@localhost -p 2222
+&lt;/code>&lt;/pre>&lt;p>Note that you don&amp;rsquo;t need to add to the known hosts file or check keys.&lt;/p>
+&lt;p>To attach to the docker image and detach, run:&lt;/p>
+&lt;pre>&lt;code>docker attach centos6
+to deattach &amp;lt;ctrl + p&amp;gt; then &amp;lt;ctrl + q&amp;gt;
+&lt;/code>&lt;/pre>&lt;p>Note that you cannot attach to a Docker image that is running systemd/upstart, for example, the &lt;code>litmus_image&lt;/code> images.&lt;/p></description></item><item><title>Docs: Core commands</title><link>https://puppetlabs.github.io/content-and-tooling-team/docs/litmus/usage/commands/litmus-core-commands/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://puppetlabs.github.io/content-and-tooling-team/docs/litmus/usage/commands/litmus-core-commands/</guid><description>
+&lt;p>Using the Litmus commands, you can provision test platforms such as containers/images, install a Puppet agent, install a module and run tests.&lt;/p>
+&lt;p>Litmus has five commands:&lt;/p>
+&lt;ol>
+&lt;li>&lt;a href="#provision">Provision: &amp;lsquo;rake litmus:provision&amp;rsquo;&lt;/a>&lt;/li>
+&lt;li>&lt;a href="#agent">Install the agent: &amp;lsquo;rake litmus:install_agent&lt;/a>&lt;/li>
+&lt;li>&lt;a href="#module">Install the module: &amp;lsquo;rake litmus:install_module&amp;rsquo;&lt;/a>&lt;/li>
+&lt;li>&lt;a href="#test">Run the tests: &amp;lsquo;rake litmus:acceptance:parallel&amp;rsquo;&lt;/a>&lt;/li>
+&lt;li>&lt;a href="#teardown">Remove the provisioned machines: &amp;lsquo;rake litmus:tear_down&amp;rsquo;&lt;/a>&lt;/li>
+&lt;/ol>
+&lt;p>These commands allow you to create a test environment and run tests against your systems. Note that not all of these steps are needed for every deployment.&lt;/p>
+&lt;p>Three common test setups are:&lt;/p>
+&lt;ul>
+&lt;li>Run against localhost&lt;/li>
+&lt;li>Run against an existing machine that has Puppet installed&lt;/li>
+&lt;li>Provision a fresh system and install Puppet&lt;/li>
+&lt;/ul>
+&lt;p>Once you have your environment, Litmus is designed to speed up the following workflow:&lt;/p>
+&lt;pre>&lt;code>edit code -&amp;gt; install module -&amp;gt; run test
+&lt;/code>&lt;/pre>&lt;p>At any point you can re-run tests, or provision new systems and add them to your test environment.&lt;/p>
+&lt;a name="provision"/>
+&lt;h2 id="provisioning">Provisioning&lt;/h2>
+&lt;p>Using the Litmus &lt;a href="https://github.com/puppetlabs/provision">provision&lt;/a> command, you can spin up Docker containers, vagrant boxes or VMs in private clouds, such as vmpooler.&lt;/p>
+&lt;p>For example:&lt;/p>
+&lt;pre>&lt;code>pdk bundle exec rake 'litmus:provision[vmpooler, redhat-6-x86_64]'
+pdk bundle exec rake 'litmus:provision[docker, litmusimage/ubuntu:18.04]'
+pdk bundle exec rake 'litmus:provision[vagrant, gusztavvargadr/windows-server]'
+&lt;/code>&lt;/pre>&lt;blockquote>
+&lt;p>Note: Provisioning is extensible — if your chosen provisioner isn&amp;rsquo;t available, you can add your own provisioner task to your test set up through a separate module in &lt;code>.fixtures.yml&lt;/code>.&lt;/p>
+&lt;/blockquote>
+&lt;p>The provision command creates a Bolt &lt;code>spec/fixtures/litmus_inventory.yml&lt;/code> file for Litmus to use. You can manually add machines to this file.&lt;/p>
+&lt;p>For example:&lt;/p>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-yaml" data-lang="yaml">---
+&lt;span style="color:#ff79c6">version&lt;/span>: &lt;span style="color:#bd93f9">2&lt;/span>
+&lt;span style="color:#ff79c6">groups&lt;/span>:
+- &lt;span style="color:#ff79c6">name&lt;/span>: docker_nodes
+&lt;span style="color:#ff79c6">targets&lt;/span>: []
+- &lt;span style="color:#ff79c6">name&lt;/span>: ssh_nodes
+&lt;span style="color:#ff79c6">targets&lt;/span>:
+- &lt;span style="color:#ff79c6">uri&lt;/span>: localhost:2222
+&lt;span style="color:#ff79c6">config&lt;/span>:
+&lt;span style="color:#ff79c6">transport&lt;/span>: ssh
+&lt;span style="color:#ff79c6">ssh&lt;/span>:
+&lt;span style="color:#ff79c6">user&lt;/span>: root
+&lt;span style="color:#ff79c6">password&lt;/span>: root
+&lt;span style="color:#ff79c6">port&lt;/span>: &lt;span style="color:#bd93f9">2222&lt;/span>
+&lt;span style="color:#ff79c6">host-key-check&lt;/span>: &lt;span style="color:#ff79c6">false&lt;/span>
+&lt;span style="color:#ff79c6">facts&lt;/span>:
+&lt;span style="color:#ff79c6">provisioner&lt;/span>: docker
+&lt;span style="color:#ff79c6">container_name&lt;/span>: centos_7-2222
+&lt;span style="color:#ff79c6">platform&lt;/span>: centos:7
+- &lt;span style="color:#ff79c6">name&lt;/span>: winrm_nodes
+&lt;span style="color:#ff79c6">targets&lt;/span>: []
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>For more examples of inventory files, see the &lt;a href="https://puppet.com/docs/bolt/latest/inventory_file_v2.html">Bolt documentation&lt;/a>.&lt;/p>
+&lt;p>Note that you can test some modules against localhost — the machine you are running your test from. Note that this is only recommended if you are familiar with the code base, as tests may have unexpected side effects on your local machine. To run a test against localhost, see &lt;a href="#test">Run the tests: &amp;lsquo;rake litmus:parallel&amp;rsquo;&lt;/a>&lt;/p>
+&lt;h3 id="testing-services">Testing services&lt;/h3>
+&lt;p>For testing services that require a service manager (like systemd), the default Docker images might not be enough. In this case, there is a collection of Docker images, with a service manager enabled, based on &lt;a href="https://github.com/puppetlabs/litmusimage">https://github.com/puppetlabs/litmusimage&lt;/a>. For available images, see the &lt;a href="https://hub.docker.com/u/litmusimage">docker hub&lt;/a>.&lt;/p>
+&lt;p>Alternatively, you can use a dedicated VM that uses another provisioner, for example vmpooler or vagrant.&lt;/p>
+&lt;h3 id="provisioning-via-yaml">Provisioning via YAML&lt;/h3>
+&lt;p>In addition to directly provisioning one or more machines using &lt;code>litmus:provision&lt;/code>, you can also define one or more sets of nodes in a &lt;code>provision.yaml&lt;/code> file and use that to provision targets.&lt;/p>
+&lt;p>An example of a &lt;code>provision.yaml&lt;/code> defining a single node:&lt;/p>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-yaml" data-lang="yaml">---
+&lt;span style="color:#ff79c6">list_name&lt;/span>:
+&lt;span style="color:#ff79c6">provisioner&lt;/span>: vagrant
+&lt;span style="color:#ff79c6">images&lt;/span>: [&lt;span style="color:#f1fa8c">&amp;#39;centos/7&amp;#39;&lt;/span>, &lt;span style="color:#f1fa8c">&amp;#39;generic/ubuntu1804&amp;#39;&lt;/span>, &lt;span style="color:#f1fa8c">&amp;#39;gusztavvargadr/windows-server&amp;#39;&lt;/span>]
+&lt;span style="color:#ff79c6">params&lt;/span>:
+&lt;span style="color:#ff79c6">param_a&lt;/span>: someone
+&lt;span style="color:#ff79c6">param_b&lt;/span>: something
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>Take note of the following:&lt;/p>
+&lt;ul>
+&lt;li>The &lt;code>list_name&lt;/code> is arbitrary and can be any string you want.&lt;/li>
+&lt;li>The &lt;code>provisioner&lt;/code> specifies which provision task to use.&lt;/li>
+&lt;li>The &lt;code>images&lt;/code> must specify an array of one or more images to provision.&lt;/li>
+&lt;li>Any keys inside of &lt;code>params&lt;/code> will be turned into process-scope environment variables as the key, upcased. In the example above, &lt;code>param_a&lt;/code> would become an environment variable called &lt;code>PARAM_A&lt;/code> with a value of &lt;code>someone&lt;/code>.&lt;/li>
+&lt;/ul>
+&lt;p>An example of a &lt;code>provision.yaml&lt;/code> defining multiple nodes:&lt;/p>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-yaml" data-lang="yaml">---
+---
+&lt;span style="color:#ff79c6">default&lt;/span>:
+&lt;span style="color:#ff79c6">provisioner&lt;/span>: docker
+&lt;span style="color:#ff79c6">images&lt;/span>: [&lt;span style="color:#f1fa8c">&amp;#39;litmusimage/centos:7&amp;#39;&lt;/span>]
+&lt;span style="color:#ff79c6">vagrant&lt;/span>:
+&lt;span style="color:#ff79c6">provisioner&lt;/span>: vagrant
+&lt;span style="color:#ff79c6">images&lt;/span>: [&lt;span style="color:#f1fa8c">&amp;#39;centos/7&amp;#39;&lt;/span>, &lt;span style="color:#f1fa8c">&amp;#39;generic/ubuntu1804&amp;#39;&lt;/span>, &lt;span style="color:#f1fa8c">&amp;#39;gusztavvargadr/windows-server&amp;#39;&lt;/span>]
+&lt;span style="color:#ff79c6">travis_deb&lt;/span>:
+&lt;span style="color:#ff79c6">provisioner&lt;/span>: docker
+&lt;span style="color:#ff79c6">images&lt;/span>: [&lt;span style="color:#f1fa8c">&amp;#39;litmusimage/debian:8&amp;#39;&lt;/span>, &lt;span style="color:#f1fa8c">&amp;#39;litmusimage/debian:9&amp;#39;&lt;/span>, &lt;span style="color:#f1fa8c">&amp;#39;litmusimage/debian:10&amp;#39;&lt;/span>]
+&lt;span style="color:#ff79c6">travis_ub&lt;/span>:
+&lt;span style="color:#ff79c6">provisioner&lt;/span>: docker
+&lt;span style="color:#ff79c6">images&lt;/span>: [&lt;span style="color:#f1fa8c">&amp;#39;litmusimage/ubuntu:14.04&amp;#39;&lt;/span>, &lt;span style="color:#f1fa8c">&amp;#39;litmusimage/ubuntu:16.04&amp;#39;&lt;/span>, &lt;span style="color:#f1fa8c">&amp;#39;litmusimage/ubuntu:18.04&amp;#39;&lt;/span>]
+&lt;span style="color:#ff79c6">travis_el6&lt;/span>:
+&lt;span style="color:#ff79c6">provisioner&lt;/span>: docker
+&lt;span style="color:#ff79c6">images&lt;/span>: [&lt;span style="color:#f1fa8c">&amp;#39;litmusimage/centos:6&amp;#39;&lt;/span>, &lt;span style="color:#f1fa8c">&amp;#39;litmusimage/oraclelinux:6&amp;#39;&lt;/span>, &lt;span style="color:#f1fa8c">&amp;#39;litmusimage/scientificlinux:6&amp;#39;&lt;/span>]
+&lt;span style="color:#ff79c6">travis_el7&lt;/span>:
+&lt;span style="color:#ff79c6">provisioner&lt;/span>: docker
+&lt;span style="color:#ff79c6">images&lt;/span>: [&lt;span style="color:#f1fa8c">&amp;#39;litmusimage/centos:7&amp;#39;&lt;/span>, &lt;span style="color:#f1fa8c">&amp;#39;litmusimage/oraclelinux:7&amp;#39;&lt;/span>, &lt;span style="color:#f1fa8c">&amp;#39;litmusimage/scientificlinux:7&amp;#39;&lt;/span>]
+&lt;span style="color:#ff79c6">release_checks&lt;/span>:
+&lt;span style="color:#ff79c6">provisioner&lt;/span>: vmpooler
+&lt;span style="color:#ff79c6">images&lt;/span>: [&lt;span style="color:#f1fa8c">&amp;#39;redhat-5-x86_64&amp;#39;&lt;/span>, &lt;span style="color:#f1fa8c">&amp;#39;redhat-6-x86_64&amp;#39;&lt;/span>, &lt;span style="color:#f1fa8c">&amp;#39;redhat-7-x86_64&amp;#39;&lt;/span>, &lt;span style="color:#f1fa8c">&amp;#39;redhat-8-x86_64&amp;#39;&lt;/span>, &lt;span style="color:#f1fa8c">&amp;#39;centos-5-x86_64&amp;#39;&lt;/span>, &lt;span style="color:#f1fa8c">&amp;#39;centos-6-x86_64&amp;#39;&lt;/span>, &lt;span style="color:#f1fa8c">&amp;#39;centos-7-x86_64&amp;#39;&lt;/span>, &lt;span style="color:#f1fa8c">&amp;#39;centos-8-x86_64&amp;#39;&lt;/span>, &lt;span style="color:#f1fa8c">&amp;#39;oracle-5-x86_64&amp;#39;&lt;/span>, &lt;span style="color:#f1fa8c">&amp;#39;oracle-6-x86_64&amp;#39;&lt;/span>, &lt;span style="color:#f1fa8c">&amp;#39;oracle-7-x86_64&amp;#39;&lt;/span>, &lt;span style="color:#f1fa8c">&amp;#39;scientific-6-x86_64&amp;#39;&lt;/span>, &lt;span style="color:#f1fa8c">&amp;#39;scientific-7-x86_64&amp;#39;&lt;/span>, &lt;span style="color:#f1fa8c">&amp;#39;debian-8-x86_64&amp;#39;&lt;/span>, &lt;span style="color:#f1fa8c">&amp;#39;debian-9-x86_64&amp;#39;&lt;/span>, &lt;span style="color:#f1fa8c">&amp;#39;debian-10-x86_64&amp;#39;&lt;/span>, &lt;span style="color:#f1fa8c">&amp;#39;sles-11-x86_64&amp;#39;&lt;/span>, &lt;span style="color:#f1fa8c">&amp;#39;sles-12-x86_64&amp;#39;&lt;/span>, &lt;span style="color:#f1fa8c">&amp;#39;sles-15-x86_64&amp;#39;&lt;/span>, &lt;span style="color:#f1fa8c">&amp;#39;ubuntu-1404-x86_64&amp;#39;&lt;/span>, &lt;span style="color:#f1fa8c">&amp;#39;ubuntu-1604-x86_64&amp;#39;&lt;/span>, &lt;span style="color:#f1fa8c">&amp;#39;ubuntu-1804-x86_64&amp;#39;&lt;/span>, &lt;span style="color:#f1fa8c">&amp;#39;win-2008r2-x86_64&amp;#39;&lt;/span>, &lt;span style="color:#f1fa8c">&amp;#39;win-2012r2-x86_64&amp;#39;&lt;/span>, &lt;span style="color:#f1fa8c">&amp;#39;win-2016-core-x86_64&amp;#39;&lt;/span>, &lt;span style="color:#f1fa8c">&amp;#39;win-2019-core-x86_64&amp;#39;&lt;/span>, &lt;span style="color:#f1fa8c">&amp;#39;win-10-pro-x86_64&amp;#39;&lt;/span>]
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>You can then provision a list of targets from that file:&lt;/p>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">&lt;span style="color:#6272a4"># This will spin up all the nodes defined in the `release_checks` key via VMPooler&lt;/span>
+pdk bundle &lt;span style="color:#8be9fd;font-style:italic">exec&lt;/span> rake &lt;span style="color:#f1fa8c">&amp;#39;litmus:provision_list[release_checks]&amp;#39;&lt;/span>
+&lt;span style="color:#6272a4"># This will spin up the three nodes listed in the `vagrant` key via Vagrant.&lt;/span>
+&lt;span style="color:#6272a4"># Note that it will also turn the listed key-value pairs in `params` into&lt;/span>
+&lt;span style="color:#6272a4"># the environment variables and enable the task to leverage them.&lt;/span>
+pdk bundle &lt;span style="color:#8be9fd;font-style:italic">exec&lt;/span> rake &lt;span style="color:#f1fa8c">&amp;#39;litmus:provision_list[vagrant]&amp;#39;&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;a name="agent"/>
+&lt;h2 id="installing-a-puppet-agent">Installing a Puppet agent&lt;/h2>
+&lt;p>Install an agent on the provisioned targets using the &lt;a href="https://github.com/puppetlabs/puppetlabs-puppet_agent">Puppet Agent module&lt;/a>. The tasks in this module allow you to install different versions of the Puppet agent, on different OSes.&lt;/p>
+&lt;p>Use the following command to install an agent on a single target or on all the targets in the &lt;code>spec/fixtures/litmus_inventory.yaml&lt;/code> file. Note that agents are installed in parallel when running against multiple targets.&lt;/p>
+&lt;p>Install an agent on a target using the following commands:&lt;/p>
+&lt;pre>&lt;code># Install the latest Puppet agent on a specific target
+pdk bundle exec rake 'litmus:install_agent[gn55owqktvej9fp.delivery.puppetlabs.net]'
+# Install the latest Puppet agent on all targets
+pdk bundle exec rake &amp;quot;litmus:install_agent&amp;quot;
+# Install Puppet 5 on all targets
+pdk bundle exec rake 'litmus:install_agent[puppet5]'
+&lt;/code>&lt;/pre>&lt;a name="module"/>
+&lt;h2 id="installing-a-module">Installing a module&lt;/h2>
+&lt;p>Using PDK and Bolt, the &lt;code>rake litmus:install_module&lt;/code> command builds and installs a module on the target.&lt;/p>
+&lt;p>For example:&lt;/p>
+&lt;pre>&lt;code>pdk bundle exec rake &amp;quot;litmus:install_module&amp;quot;
+&lt;/code>&lt;/pre>&lt;p>If you need multiple modules on the target system (e.g. fixtures pulled down through &lt;code>pdk bundle exec rake spec_prep&lt;/code>, or a previous unit test run):&lt;/p>
+&lt;pre>&lt;code>pdk bundle exec rake &amp;quot;litmus:install_modules_from_directory[spec/fixtures/modules]&amp;quot;
+&lt;/code>&lt;/pre>&lt;a name="test"/>
+&lt;h2 id="running-tests">Running tests&lt;/h2>
+&lt;p>There are several options for running tests. Litmus primarily uses &lt;a href="https://serverspec.org/">serverspec&lt;/a>, though you can use other testing tools.&lt;/p>
+&lt;p>When running tests with Litmus, you can:&lt;/p>
+&lt;ul>
+&lt;li>Run all tests against a single target.&lt;/li>
+&lt;li>Run all tests against all targets in parallel.&lt;/li>
+&lt;li>Run a single test against a single target.&lt;/li>
+&lt;/ul>
+&lt;p>An example running all tests against a single target:&lt;/p>
+&lt;pre>&lt;code># On Linux/MacOS:
+TARGET_HOST=lk8g530gzpjxogh.delivery.puppetlabs.net pdk bundle exec rspec ./spec/acceptance
+TARGET_HOST=localhost:2223 pdk bundle exec rspec ./spec/acceptance
+# On Windows:
+$ENV:TARGET_HOST = 'lk8g530gzpjxogh.delivery.puppetlabs.net'
+pdk bundle exec rspec ./spec/acceptance
+&lt;/code>&lt;/pre>&lt;p>An example running a specific test against a single target:&lt;/p>
+&lt;pre>&lt;code># On Linux/MacOS:
+TARGET_HOST=lk8g530gzpjxogh.delivery.puppetlabs.net pdk bundle exec rspec ./spec/acceptance/test_spec.rb:21
+TARGET_HOST=localhost:2223 pdk bundle exec rspec ./spec/acceptance/test_spec.rb:21
+# On Windows:
+$ENV:TARGET_HOST = 'lk8g530gzpjxogh.delivery.puppetlabs.net'
+pdk bundle exec rspec ./spec/acceptance/test_spec.rb:21
+&lt;/code>&lt;/pre>&lt;p>An example running all tests against all targets, as specified in the &lt;code>spec/fixtures/litmus_inventory.yaml&lt;/code> file:&lt;/p>
+&lt;pre>&lt;code>pdk bundle exec rake litmus:acceptance:parallel
+&lt;/code>&lt;/pre>&lt;p>An example running all tests against localhost. Note that this is only recommended if you are familiar with the code base, as tests may have unexpected side effects on your local machine.&lt;/p>
+&lt;pre>&lt;code>pdk bundle exec rake litmus:acceptance:localhost
+&lt;/code>&lt;/pre>&lt;p>For more test examples, see &lt;a href="https://github.com/puppetlabs/provision/wiki#run_tests">run_tests task&lt;/a> or &lt;a href="https://github.com/puppetlabs/provision/wiki#tests_against_agents">run tests plan&lt;/a>&lt;/p>
+&lt;a name="teardown"/>
+&lt;h2 id="removing-provisioned-systems">Removing provisioned systems&lt;/h2>
+&lt;p>Use the commands below to clean up provisioned systems after running tests. Specify whether to to remove an individual target or all the targets in the &lt;code>spec/fixtures/litmus_inventory.yaml&lt;/code> file.&lt;/p>
+&lt;pre>&lt;code># Tear down a specific target vm
+pdk bundle exec rake &amp;quot;litmus:tear_down[c985f9svvvu95nv.delivery.puppetlabs.net]&amp;quot;
+# Tear down a specific target running locally
+pdk bundle exec rake &amp;quot;litmus:tear_down[localhost:2222]&amp;quot;
+# Tear down all targets in `spec/fixtures/litmus_inventory.yaml` file
+pdk bundle exec rake &amp;quot;litmus:tear_down&amp;quot;
+&lt;/code>&lt;/pre></description></item></channel></rss>

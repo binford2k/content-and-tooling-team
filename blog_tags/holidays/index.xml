@@ -1,4 +1,28 @@
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Content and Tooling – holidays</title><link>https://puppetlabs.github.io/content-and-tooling-team/blog_tags/holidays/</link><description>Recent content in holidays on Content and Tooling</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Fri, 19 Mar 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://puppetlabs.github.io/content-and-tooling-team/blog_tags/holidays/index.xml" rel="self" type="application/rss+xml"/><item><title>Blog: 2021-03-19: IAC Team Status Update</title><link>https://puppetlabs.github.io/content-and-tooling-team/blog/updates/2021-03-19-status-update/</link><pubDate>Fri, 19 Mar 2021 00:00:00 +0000</pubDate><guid>https://puppetlabs.github.io/content-and-tooling-team/blog/updates/2021-03-19-status-update/</guid><description>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Content and Tooling – holidays</title><link>https://puppetlabs.github.io/content-and-tooling-team/blog_tags/holidays/</link><description>Recent content in holidays on Content and Tooling</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Fri, 23 Dec 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://puppetlabs.github.io/content-and-tooling-team/blog_tags/holidays/index.xml" rel="self" type="application/rss+xml"/><item><title>Blog: 2022-12-23: Content &amp; Tooling Team Status Update</title><link>https://puppetlabs.github.io/content-and-tooling-team/blog/updates/2022-12-23-status-update/</link><pubDate>Fri, 23 Dec 2022 00:00:00 +0000</pubDate><guid>https://puppetlabs.github.io/content-and-tooling-team/blog/updates/2022-12-23-status-update/</guid><description>
+&lt;h2 id="wishing-all-past-present-and-future-contributors-a-very-happy-holidays">Wishing all Past, Present and Future Contributors a very Happy Holidays&lt;/h2>
+&lt;p>As a team we would like to take the time to thank everyone for their contributions over the past year, we really appreciate the effort it takes to get things over the line. This will be our last update of the year as the team takes some time to relax and recharge in preparation for 2023.&lt;/p>
+&lt;iframe src="https://giphy.com/embed/5tkB6yiPZkHaZ7t44F" width="480" height="270" frameBorder="0" class="giphy-embed" allowFullScreen>&lt;/iframe>&lt;p>&lt;a href="https://giphy.com/gifs/bilbareed-holiday-season-happy-holidays-5tkB6yiPZkHaZ7t44F">via GIPHY&lt;/a>&lt;/p>
+&lt;h2 id="team-building-with-nybble">Team Building with Nybble&lt;/h2>
+&lt;p>This week our team was delighted to receive a generous gift from &lt;a href="https://github.com/binford2k">Ben Ford&lt;/a>. We spent some time team building and trying to get our &lt;a href="https://www.petoi.com/">Petoi cat &lt;/a> called &lt;em>Nybble&lt;/em> up and running. So far we have the robot built and are super excited to schedule some time in the New Year to train it to do backflips!&lt;/p>
+&lt;p>&lt;img src="https://puppetlabs.github.io/content-and-tooling-team/content-and-tooling-team/images/petoi.jpeg" alt="">&lt;/p>
+&lt;h2 id="community-contributions">Community Contributions&lt;/h2>
+&lt;p>We&amp;rsquo;d like to thank the following people in the Puppet Community for their contributions over this past week:&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://github.com/puppetlabs/puppetlabs-stdlib/pull/1286">&lt;code>puppetlabs-stdlib#1286&lt;/code>&lt;/a>: &amp;ldquo;stdlib::ensure: update function to support the generic case&amp;rdquo;, thanks to &lt;a href="https://github.com/b4ldr">b4ldr&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;h2 id="new-module--gem-releases">New Module / Gem Releases&lt;/h2>
+&lt;p>The following modules were released this week:&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>&lt;a href="https://github.com/puppetlabs/puppetlabs-apt">&lt;code>puppetlabs-apt&lt;/code>&lt;/a> (&lt;code>9.0.1&lt;/code>)&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;a href="https://github.com/puppetlabs/puppetlabs-apache">&lt;code>puppetlabs-apache&lt;/code>&lt;/a> (&lt;code>9.0.1&lt;/code>)&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;a href="http://github.com/puppetlabs/puppetlabs-mysql">&lt;code>puppetlabs-mysql&lt;/code>&lt;/a> (&lt;code>13.1.0&lt;/code>)&lt;/p>
+&lt;/li>
+&lt;/ul></description></item><item><title>Blog: 2021-03-19: IAC Team Status Update</title><link>https://puppetlabs.github.io/content-and-tooling-team/blog/updates/2021-03-19-status-update/</link><pubDate>Fri, 19 Mar 2021 00:00:00 +0000</pubDate><guid>https://puppetlabs.github.io/content-and-tooling-team/blog/updates/2021-03-19-status-update/</guid><description>
 &lt;h2 id="happy-st-patricks-day">Happy St Patricks Day&lt;/h2>
 &lt;p>All of the team located in Belfast were off on Wednesday this week for St Patricks day. For everyone it was pretty quiet due to local restrictions in place but nice to get a break in the middle of the week! :-)&lt;/p>
 &lt;p>&lt;img src="https://puppetlabs.github.io/content-and-tooling-team/content-and-tooling-team/assets/2021-03-19-status-update/stp_day.png" alt="st_patricks_day">{:align=&amp;ldquo;center&amp;rdquo;}&lt;/p>

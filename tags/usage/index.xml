@@ -78,7 +78,139 @@ If a template doesn&amp;rsquo;t require one, providing a value to the &lt;code>-
 &lt;h3 id="list-installed-tools">List installed tools&lt;/h3>
 &lt;p>Installed tools can be listed by running the command &lt;code>prm exec --list&lt;/code>, displayed in the following format:&lt;/p>
 &lt;p>&lt;img src="https://github.com/puppetlabs/prm/blob/main/docs/md/content/images/exec-list-tools.png?raw=true" alt="prm tool list screenshot">&lt;/p>
-&lt;p>The &lt;code>--toolpath&lt;/code> flag can also be added to list tools installed in an alternate location.&lt;/p></description></item><item><title>Docs: Writing Templates</title><link>https://puppetlabs.github.io/content-and-tooling-team/docs/pct/usage/templates-writing/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://puppetlabs.github.io/content-and-tooling-team/docs/pct/usage/templates-writing/</guid><description>
+&lt;p>The &lt;code>--toolpath&lt;/code> flag can also be added to list tools installed in an alternate location.&lt;/p></description></item><item><title>Docs: Validating Puppet Content</title><link>https://puppetlabs.github.io/content-and-tooling-team/docs/prm/usage/validate/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://puppetlabs.github.io/content-and-tooling-team/docs/prm/usage/validate/</guid><description>
+&lt;p>In this guide you&amp;rsquo;ll learn how the validate command works and how to use
+it to quickly validate your Puppet content.&lt;/p>
+&lt;h4 id="what-is-a-validator">What is a validator&lt;/h4>
+&lt;p>A validator is a tool which can read and validate a codebase of Puppet content.&lt;/p>
+&lt;p>The configuration of a validator is almost identical to that of a normal
+tool. The only difference is that validators contain the &lt;code>can_validate: true&lt;/code>
+property in their &lt;code>prm-config.yml&lt;/code> configuration file.&lt;/p>
+&lt;p>All validation tools in a tool directory can be listed with the following command:&lt;/p>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">prm validate --list
+&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="how-to-use-the-validate-command">How to use the validate command&lt;/h3>
+&lt;h4 id="single-tool-validation">Single tool validation&lt;/h4>
+&lt;p>It is very easy to validate with a single tool. The command below shows an
+outline of the core arguments and flags necessary for content validation:&lt;/p>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">prm validate &lt;span style="color:#ff79c6">{&lt;/span>author/tool&lt;span style="color:#ff79c6">}&lt;/span> --codedir &lt;span style="color:#ff79c6">{&lt;/span>location/of/code&lt;span style="color:#ff79c6">}&lt;/span> --toolArgs&lt;span style="color:#ff79c6">=&lt;/span>&lt;span style="color:#f1fa8c">&amp;#34;{any, tool, args}&amp;#34;&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>Here is an example of a command composed to validate &lt;code>epp&lt;/code> content against the current directory,
+specifically, &lt;code>dir1&lt;/code> and &lt;code>dir2&lt;/code> as specified by the &lt;code>toolArgs&lt;/code> flag.&lt;/p>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">prm validate puppetlabs/epp --codedir . --toolArgs&lt;span style="color:#ff79c6">=&lt;/span>&lt;span style="color:#f1fa8c">&amp;#34;dir1, dir2&amp;#34;&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>When the command is executed PRM will validate with the &lt;code>epp&lt;/code> tool using the appropriate tool
+arguments; the tool arguments in this case will instruct epp to validate content in the specified directories.&lt;/p>
+&lt;h4 id="multi-tool-validation">Multi-tool validation&lt;/h4>
+&lt;p>PRM supports running multiple validation tools simultaneously. That&amp;rsquo;s where the
+&lt;code>validate.yml&lt;/code> file comes in; it allows you to arrange validators into groups.&lt;/p>
+&lt;p>After grouping validators in a &lt;code>validate.yml&lt;/code> file, you can easily run a group of validators
+from a single command. See below for usage of multi-tool validation.&lt;/p>
+&lt;h5 id="example-of-a-validateyml-file">Example of a &lt;code>validate.yml&lt;/code> file&lt;/h5>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-yaml" data-lang="yaml">&lt;span style="color:#ff79c6">groups&lt;/span>:
+- &lt;span style="color:#ff79c6">id&lt;/span>: &lt;span style="color:#f1fa8c">&amp;#34;ci&amp;#34;&lt;/span>
+&lt;span style="color:#ff79c6">tools&lt;/span>:
+- &lt;span style="color:#ff79c6">name&lt;/span>: puppetlabs/epp
+&lt;span style="color:#ff79c6">args&lt;/span>: [--example, args]
+- &lt;span style="color:#ff79c6">name&lt;/span>: puppetlabs/parser
+- &lt;span style="color:#ff79c6">name&lt;/span>: puppetlabs/puppet-lint
+- &lt;span style="color:#ff79c6">name&lt;/span>: puppetlabs/onceover
+- &lt;span style="color:#ff79c6">id&lt;/span>: &lt;span style="color:#f1fa8c">&amp;#34;quick_validate&amp;#34;&lt;/span>
+&lt;span style="color:#ff79c6">tools&lt;/span>:
+- &lt;span style="color:#ff79c6">name&lt;/span>: puppetlabs/epp
+- &lt;span style="color:#ff79c6">name&lt;/span>: puppetlabs/rubocop
+- &lt;span style="color:#ff79c6">name&lt;/span>: puppetlabs/parser
+- &lt;span style="color:#ff79c6">name&lt;/span>: puppetlabs/r10k
+- &lt;span style="color:#ff79c6">id&lt;/span>: &lt;span style="color:#f1fa8c">&amp;#34;syntax_validation&amp;#34;&lt;/span>
+&lt;span style="color:#ff79c6">tools&lt;/span>:
+- &lt;span style="color:#ff79c6">name&lt;/span>: puppetlabs/puppet-syntax
+- &lt;span style="color:#ff79c6">name&lt;/span>: puppetlabs/metadata-json-lint
+- &lt;span style="color:#ff79c6">name&lt;/span>: puppetlabs/puppet-lint
+&lt;/code>&lt;/pre>&lt;/div>
+&lt;div class="alert alert-primary" role="alert">
+&lt;h4 class="alert-heading">Note&lt;/h4>
+The &lt;code>validate.yml&lt;/code> file should be stored in the &lt;strong>root&lt;/strong> of the Puppet content codebase
+which is to be validated.
+&lt;/div>
+&lt;h5 id="group-flag">&lt;code>group&lt;/code> flag&lt;/h5>
+&lt;p>The &lt;code>--group {string}&lt;/code> flag can be used to specify which group of validators to run, e.g.&lt;/p>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">prm validate --codedir . --group syntax_validation
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>When the command is executed PRM will validate with the &lt;code>syntax_validation&lt;/code> group of validators.&lt;/p>
+&lt;h5 id="workercount-flag">&lt;code>workerCount&lt;/code> flag&lt;/h5>
+&lt;p>The &lt;code>--workerCount {int}&lt;/code> flag can be used to specify how many validators will run simultaneously; e.g.&lt;/p>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">prm validate --codedir . --group syntax_validation --workerCount &lt;span style="color:#bd93f9">2&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>When the command is executed PRM will validate with the &lt;code>syntax_validation&lt;/code> group of validators,
+running a maximum of 2 validators concurrently.&lt;/p>
+&lt;h5 id="serial-flag">&lt;code>serial&lt;/code> flag&lt;/h5>
+&lt;p>The &lt;code>--serial&lt;/code> flag can be used to specify that only one validator should be run a time; e.g.&lt;/p>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">prm validate --codedir . --group syntax_validation --serial
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>When the command is executed PRM will validate with the &lt;code>syntax_validation&lt;/code> group of validators,
+running one validator at a time.&lt;/p>
+&lt;h4 id="viewing-validation-results">Viewing validation results&lt;/h4>
+&lt;p>PRM can currently output validation results to the terminal or to a
+log file.&lt;/p>
+&lt;div class="alert alert-primary" role="alert">
+&lt;h4 class="alert-heading">Note&lt;/h4>
+When outputting to the terminal, PRM will only output &lt;code>stderr&lt;/code>, if there
+is any; whereas both &lt;code>stdout&lt;/code> and &lt;code>stderr&lt;/code> are outputted to log files. This
+is to prevent the terminal from becoming congested with verbose and
+irrelevant text.
+&lt;/div>
+&lt;h5 id="default-output-locations">Default output locations&lt;/h5>
+&lt;p>See below the default output locations for each type of validation:&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>Single tool&lt;/th>
+&lt;th>Multi-tool&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>terminal&lt;/td>
+&lt;td>file&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;h5 id="resultsview-flag">&lt;code>resultsView&lt;/code> flag&lt;/h5>
+&lt;p>The &lt;code>--resultsView {terminal|file}&lt;/code> can be used to specify where you want the results of validation to output
+to.&lt;/p>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">prm validate puppetlabs/epp --codedir . --resultsView file
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>The results of this validation will be sent to a log file, overriding the default output for single tool
+validation, which is the terminal.&lt;/p>
+&lt;h4 id="example-of-multi-tool-results-outputted-to-the-terminal">Example of multi-tool results outputted to the terminal:&lt;/h4>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">$ prm validate --codedir . --group syntax_validation --resultsView terminal
+3:23PM INF Found tool group: syntax_validation
+3:23PM INF Validating with the puppet-syntax tool
+3:23PM INF Validating with the puppet-lint tool
+3:23PM INF Validating with the metadata-json-lint tool
+3:24PM ERR puppet-syntax:
+---&amp;gt; syntax:manifests
+---&amp;gt; syntax:templates
+ERRORS:
+Syntax error at &lt;span style="color:#f1fa8c">&amp;#39;Kernel&amp;#39;&lt;/span> &lt;span style="color:#ff79c6">(&lt;/span>file: templates/motd.epp, line: 5, column: 1&lt;span style="color:#ff79c6">)&lt;/span>
+TOOL NAME | VALIDATION EXIT CODE
+---------------------+-----------------------
+puppet-syntax | &lt;span style="color:#bd93f9">1&lt;/span>
+metadata-json-lint | &lt;span style="color:#bd93f9">0&lt;/span>
+puppet-lint | &lt;span style="color:#bd93f9">0&lt;/span>
+3:24PM ERR Validation returned &lt;span style="color:#bd93f9">1&lt;/span> error
+&lt;/code>&lt;/pre>&lt;/div>&lt;h4 id="example-of-multi-tool-results-outputted-to-the-log-files">Example of multi-tool results outputted to the log files:&lt;/h4>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">&lt;span style="color:#6272a4"># No need to specify the --resultsView flag here as it defaults to `file` for mulit-tool validation&lt;/span>
+$ prm validate --codedir . --group syntax_validation
+3:49PM INF Found tool group: syntax_validation
+3:49PM INF Validating with the metadata-json-lint tool
+3:49PM INF Validating with the puppet-syntax tool
+3:49PM INF Validating with the puppet-lint tool
+TOOL NAME | VALIDATION EXIT CODE | FILE LOCATION
+---------------------+----------------------+--------------------------------------------------------------------------------
+puppet-syntax | &lt;span style="color:#bd93f9">1&lt;/span> | .prm-validate/syntax_validation/puppet-syntax_2022_April_26_16-49-59.log
+metadata-json-lint | &lt;span style="color:#bd93f9">0&lt;/span> | .prm-validate/syntax_validation/metadata-json-lint_2022_April_26_16-49-59.log
+puppet-lint | &lt;span style="color:#bd93f9">0&lt;/span> | .prm-validate/syntax_validation/puppet-lint_2022_April_26_16-49-59.log
+3:49PM ERR Validation returned &lt;span style="color:#bd93f9">1&lt;/span> error
+&lt;/code>&lt;/pre>&lt;/div>
+&lt;div class="alert alert-primary" role="alert">
+&lt;h4 class="alert-heading">Note&lt;/h4>
+Support for formatting of the validation results will be implemented in a future
+release. E.g. JSON or JUNIT
+&lt;/div></description></item><item><title>Docs: Writing Templates</title><link>https://puppetlabs.github.io/content-and-tooling-team/docs/pct/usage/templates-writing/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://puppetlabs.github.io/content-and-tooling-team/docs/pct/usage/templates-writing/</guid><description>
 &lt;h3 id="structure">Structure&lt;/h3>
 &lt;p>A PCT is an archive containing a templated set of files and folders that represent a completed set of content. Files and folders stored in the template aren&amp;rsquo;t limited to formal Puppet project types. Source files and folders may consist of any content that you wish to create when the template is used, even if the template engine produces just one file as its output.&lt;/p>
 &lt;h3 id="location">Location&lt;/h3>

@@ -1,0 +1,32 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Content and Tooling – release</title><link>https://puppetlabs.github.io/content-and-tooling-team/blog_tags/release/</link><description>Recent content in release on Content and Tooling</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Fri, 26 Aug 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://puppetlabs.github.io/content-and-tooling-team/blog_tags/release/index.xml" rel="self" type="application/rss+xml"/><item><title>Blog: 2022-08-26: Content &amp; Tooling Team Status Update</title><link>https://puppetlabs.github.io/content-and-tooling-team/blog/updates/2022-08-26-status-update/</link><pubDate>Fri, 26 Aug 2022 00:00:00 +0000</pubDate><guid>https://puppetlabs.github.io/content-and-tooling-team/blog/updates/2022-08-26-status-update/</guid><description>
+&lt;h2 id="take-it-easy-its-friday">Take it easy, it&amp;rsquo;s Friday!!&lt;/h2>
+&lt;p>Hey guys, back again with another friday update. As the end of summer starts to approach, we have been busy working on a few important updates. Firstly, as part of our latest maintenance patch, we have merged
+a few important changes on the MySQL and Docker modules and released a new major version for them. Be sure to check them out!&lt;/p>
+&lt;p>We also want to take this chance to remind the community that our team is moving away from the MODULES project and, as such, any (new or old) issues or bug reports with our modules should be raised in GitHub at the
+appropriate section. This helps us keep better track of our current workload and be more efficient around the issue resolution area.&lt;/p>
+&lt;p>Finally, it&amp;rsquo;s worth mentioning that, due to the bank holiday, we are not going be holding a community day on Monday 29th.&lt;/p>
+&lt;p>And that&amp;rsquo;s it, folks. See you next Friday and enjoy your weekend!&lt;/p>
+&lt;h2 id="community-contributions">Community Contributions&lt;/h2>
+&lt;p>We&amp;rsquo;d like to thank the following people in the Puppet Community for their contributions over this past week:&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://github.com/puppetlabs/puppetlabs-apache/pull/2289">&lt;code>puppetlabs-apache#2289&lt;/code>&lt;/a>: &amp;ldquo;Add support for all proxy schemes, not just https://&amp;rdquo;, thanks to &lt;a href="https://github.com/canth1">canth1&lt;/a> and the following people who helped get it over the line (&lt;a href="https://github.com/ekohl">ekohl&lt;/a>)&lt;/li>
+&lt;li>&lt;a href="https://github.com/puppetlabs/puppetlabs-postgresql/pull/1363">&lt;code>puppetlabs-postgresql#1363&lt;/code>&lt;/a>: &amp;ldquo;Fix puppet-strings documentation&amp;rdquo;, thanks to &lt;a href="https://github.com/ekohl">ekohl&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://github.com/puppetlabs/puppetlabs-postgresql/pull/1356">&lt;code>puppetlabs-postgresql#1356&lt;/code>&lt;/a>: &amp;ldquo;Only require password when used&amp;rdquo;, thanks to &lt;a href="https://github.com/arjenz">arjenz&lt;/a> and the following people who helped get it over the line (&lt;a href="https://github.com/ekohl">ekohl&lt;/a>)&lt;/li>
+&lt;li>&lt;a href="https://github.com/puppetlabs/puppetlabs-tomcat/pull/491">&lt;code>puppetlabs-tomcat#491&lt;/code>&lt;/a>: &amp;ldquo;Allow usage of Context/Resources&amp;rdquo;, thanks to &lt;a href="https://github.com/tuxmea">tuxmea&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;h2 id="new-module--gem-releases">New Module / Gem Releases&lt;/h2>
+&lt;p>The following modules were released this week:&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>&lt;a href="https://github.com/puppetlabs/puppetlabs-docker">&lt;code>puppetlabs-docker&lt;/code>&lt;/a> (&lt;code>5.0.0&lt;/code>)&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;a href="https://github.com/puppetlabs/puppetlabs-postgresql">&lt;code>puppetlabs-postgresql&lt;/code>&lt;/a> (&lt;code>8.2.1&lt;/code>)&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;a href="https://github.com/puppetlabs/puppetlabs-sqlserver">&lt;code>puppetlabs-sqlserver&lt;/code>&lt;/a> (&lt;code>3.2.0&lt;/code>)&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;a href="https://github.com/puppetlabs/puppetlabs-mysql">&lt;code>puppetlabs-mysql&lt;/code>&lt;/a>(&lt;code>13.0.0&lt;/code>)&lt;/p>
+&lt;/li>
+&lt;/ul></description></item></channel></rss>
