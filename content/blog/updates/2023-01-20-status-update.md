@@ -18,7 +18,7 @@ Another big announcement - earlier this week we received word that the [puppetla
 
 ## Come meet us at CfgMgmtCamp
 
-Just another friendly reminder to come and say hello to [Craig](craig), [Gavin](gavin) and [David](david) if you're attending CfgMgmtCamp.
+Just another friendly reminder to come and say hello to [Craig][craig], [Gavin][gavin] and [David][david] if you're attending CfgMgmtCamp.
 
 ## Community Contributions
 

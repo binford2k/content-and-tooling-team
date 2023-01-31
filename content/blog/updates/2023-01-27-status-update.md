@@ -17,11 +17,11 @@ Usually, we have held our community days on Mondays. Now we're trialling holding
 
 ## PDK 2.6.1
 
-We're starting to get the hang of this! [Craig](craig) and [me](gavin) have started to take more ownership of PDK and have been doing some deep dives in this extensive tool. This latest release adds support for OSX 12 and Ubuntu 22.04.
+We're starting to get the hang of this! [Craig][craig] and [me][gavin] have started to take more ownership of PDK and have been doing some deep dives in this extensive tool. This latest release adds support for OSX 12 and Ubuntu 22.04.
 
 ## David's blog post
 
-And finally, if you haven't already seen it, check out [David](david)'s blog post on how he removed puppet-module-gems from our supported modules. You can find it [here](https://puppetlabs.github.io/content-and-tooling-team/blog/posts/2023-01-10-remove-puppet-module-gems/).
+And finally, if you haven't already seen it, check out [David][david]'s blog post on how he removed puppet-module-gems from our supported modules. You can find it [here](https://puppetlabs.github.io/content-and-tooling-team/blog/posts/2023-01-10-remove-puppet-module-gems/).
 
 ## Community Contributions
 
