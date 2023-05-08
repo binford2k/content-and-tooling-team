@@ -50,7 +50,6 @@ It also means that it is easier to replace the parts that did not turn out to fu
 &lt;li>puppetlabs-puppet_agent module&lt;/li>
 &lt;/ul>
 &lt;/li>
-&lt;li>Test Tracing: honeycomb&lt;/li>
 &lt;li>Testing System
 &lt;ul>
 &lt;li>runner: RSpec&lt;/li>
@@ -211,12 +210,6 @@ These modules are maintained and used in other parts of the ecosystem already.
 Reusing them provides for a consistent behaviour across different products and additional value gained from the existing development and maintenance effort.&lt;/p>
 &lt;p>&lt;strong>Alternatives:&lt;/strong>
 None required at the moment.&lt;/p>
-&lt;h2 id="test-tracing">Test Tracing&lt;/h2>
-&lt;p>For puppet-internal use we have instrumented Litmus and RSpec with &lt;a href="https://honeycomb.io">Honeycomb&lt;/a>.
-This is a optional component that is deactivated by default.&lt;/p>
-&lt;p>&lt;strong>Reasoning:&lt;/strong>
-As the IAC team is maintaining ~50 modules' test suites across Travis CI, Appveyor and Github Actions, we were looking for a unified way to keep track of everything that is going on.
-While not originally designed for it, Honeycomb fit the bill easily.&lt;/p>
 &lt;p>&lt;strong>Alternatives:&lt;/strong>
 None required at the moment.&lt;/p>
 &lt;h2 id="testing-system">Testing System&lt;/h2>
