@@ -1317,16 +1317,16 @@ pdk bundle exec rake 'litmus:provision[vagrant, gusztavvargadr/windows-server]'
 &lt;span style="color:#ff79c6">vagrant&lt;/span>:
 &lt;span style="color:#ff79c6">provisioner&lt;/span>: vagrant
 &lt;span style="color:#ff79c6">images&lt;/span>: [&lt;span style="color:#f1fa8c">&amp;#39;centos/7&amp;#39;&lt;/span>, &lt;span style="color:#f1fa8c">&amp;#39;generic/ubuntu1804&amp;#39;&lt;/span>, &lt;span style="color:#f1fa8c">&amp;#39;gusztavvargadr/windows-server&amp;#39;&lt;/span>]
-&lt;span style="color:#ff79c6">travis_deb&lt;/span>:
+&lt;span style="color:#ff79c6">docker_deb&lt;/span>:
 &lt;span style="color:#ff79c6">provisioner&lt;/span>: docker
 &lt;span style="color:#ff79c6">images&lt;/span>: [&lt;span style="color:#f1fa8c">&amp;#39;litmusimage/debian:8&amp;#39;&lt;/span>, &lt;span style="color:#f1fa8c">&amp;#39;litmusimage/debian:9&amp;#39;&lt;/span>, &lt;span style="color:#f1fa8c">&amp;#39;litmusimage/debian:10&amp;#39;&lt;/span>]
-&lt;span style="color:#ff79c6">travis_ub&lt;/span>:
+&lt;span style="color:#ff79c6">docker_ub&lt;/span>:
 &lt;span style="color:#ff79c6">provisioner&lt;/span>: docker
 &lt;span style="color:#ff79c6">images&lt;/span>: [&lt;span style="color:#f1fa8c">&amp;#39;litmusimage/ubuntu:14.04&amp;#39;&lt;/span>, &lt;span style="color:#f1fa8c">&amp;#39;litmusimage/ubuntu:16.04&amp;#39;&lt;/span>, &lt;span style="color:#f1fa8c">&amp;#39;litmusimage/ubuntu:18.04&amp;#39;&lt;/span>]
-&lt;span style="color:#ff79c6">travis_el6&lt;/span>:
+&lt;span style="color:#ff79c6">docker_el6&lt;/span>:
 &lt;span style="color:#ff79c6">provisioner&lt;/span>: docker
 &lt;span style="color:#ff79c6">images&lt;/span>: [&lt;span style="color:#f1fa8c">&amp;#39;litmusimage/centos:6&amp;#39;&lt;/span>, &lt;span style="color:#f1fa8c">&amp;#39;litmusimage/oraclelinux:6&amp;#39;&lt;/span>, &lt;span style="color:#f1fa8c">&amp;#39;litmusimage/scientificlinux:6&amp;#39;&lt;/span>]
-&lt;span style="color:#ff79c6">travis_el7&lt;/span>:
+&lt;span style="color:#ff79c6">docker_el7&lt;/span>:
 &lt;span style="color:#ff79c6">provisioner&lt;/span>: docker
 &lt;span style="color:#ff79c6">images&lt;/span>: [&lt;span style="color:#f1fa8c">&amp;#39;litmusimage/centos:7&amp;#39;&lt;/span>, &lt;span style="color:#f1fa8c">&amp;#39;litmusimage/oraclelinux:7&amp;#39;&lt;/span>, &lt;span style="color:#f1fa8c">&amp;#39;litmusimage/scientificlinux:7&amp;#39;&lt;/span>]
 &lt;span style="color:#ff79c6">release_checks&lt;/span>:
