@@ -4,7 +4,7 @@
 &lt;ol>
 &lt;li>Clone the MoTD module from GitHub.&lt;/li>
 &lt;li>Provision a CentOS Docker image.&lt;/li>
-&lt;li>Install a Puppet 6 agent on the CentOS image.&lt;/li>
+&lt;li>Install Puppet agent on the CentOS image.&lt;/li>
 &lt;li>Install the MoTD module on the CentOS image.&lt;/li>
 &lt;li>Run the MoTD acceptance tests.&lt;/li>
 &lt;li>Remove the Docker image.&lt;/li>
@@ -15,7 +15,7 @@
 &lt;li>&lt;a href="https://runnable.com/docker/getting-started/">Docker&lt;/a>.
 &lt;ul>
 &lt;li>To check whether you already have Docker, run &lt;code>docker --version&lt;/code> from the command line.&lt;/li>
-&lt;li>To check Docker is working, run &lt;code>docker run centos:7 ls&lt;/code> in your terminal. You should see a list of folders in the CentOS image.&lt;/li>
+&lt;li>To check Docker is working, run &lt;code>docker run litmusimage/centos:stream9 ls&lt;/code> in your terminal. You should see a list of folders in the CentOS image.&lt;/li>
 &lt;/ul>
 &lt;/li>
 &lt;li>&lt;a href="https://git-scm.com/book/en/v2/Getting-Started-Installing-Git">Git&lt;/a>
@@ -23,35 +23,35 @@
 &lt;li>To check where you already have git, run &lt;code>git --version&lt;/code> in your terminal.&lt;/li>
 &lt;/ul>
 &lt;/li>
-&lt;li>&lt;a href="https://puppet.com/docs/pdk/1.x/pdk_install.html">Puppet Development Kit (PDK)&lt;/a>.
+&lt;li>&lt;a href="https://puppet.com/docs/pdk/3.x/pdk_install.html">Puppet Development Kit (PDK)&lt;/a>.
 &lt;ul>
-&lt;li>To check whether you already have PDK, run &lt;code>pdk --version&lt;/code> from the command line. Note that you need version &lt;code>1.17.0&lt;/code> or later. If not, then following the &lt;a href="https://puppet.com/docs/pdk/1.x/pdk_install.html">installation instructions&lt;/a>.&lt;/li>
+&lt;li>To check whether you already have PDK, run &lt;code>pdk --version&lt;/code> from the command line. Note that you need version &lt;code>1.17.0&lt;/code> or later. If not, then following the &lt;a href="https://puppet.com/docs/pdk/3.x/pdk_install.html">installation instructions&lt;/a>.&lt;/li>
 &lt;/ul>
 &lt;/li>
 &lt;/ul>
 &lt;h2 id="1-clone-the-motd-module-from-github">1. Clone the MoTD module from GitHub.&lt;/h2>
 &lt;p>From the command line, clone the Litmus branch of MoTD module:&lt;/p>
-&lt;pre>&lt;code>git clone https://github.com/puppetlabs/puppetlabs-motd.git
-&lt;/code>&lt;/pre>&lt;p>You now have a local copy of the module on your machine. In this example, you can work off the master branch.&lt;/p>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">git clone https://github.com/puppetlabs/puppetlabs-motd.git
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>You now have a local copy of the module on your machine. In this example, you can work off the master branch.&lt;/p>
 &lt;p>Change directory to the MoTD module&lt;/p>
-&lt;pre>&lt;code>cd puppetlabs-motd
-&lt;/code>&lt;/pre>&lt;h2 id="2-install-the-necessary-gems">2. Install the necessary gems.&lt;/h2>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">&lt;span style="color:#8be9fd;font-style:italic">cd&lt;/span> puppetlabs-motd
+&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="2-install-the-necessary-gems">2. Install the necessary gems.&lt;/h2>
 &lt;p>The MoTD module relies on a number of gems. To install these on your machine, run the following command:&lt;/p>
-&lt;pre>&lt;code>pdk bundle install
-&lt;/code>&lt;/pre>&lt;h2 id="3-provision-a-centos-docker-image">3. Provision a CentOS Docker image.&lt;/h2>
-&lt;p>Provision a CentOS 7 image in a Docker container to be the target you will test against&lt;/p>
-&lt;p>To provision the CentOS 7 target (or any OS of your choice), run the following command:&lt;/p>
-&lt;pre>&lt;code>pdk bundle exec rake 'litmus:provision[docker, litmusimage/centos:7]'
-&lt;/code>&lt;/pre>&lt;blockquote>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">pdk bundle install
+&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="3-provision-a-centos-docker-image">3. Provision a CentOS Docker image&lt;/h2>
+&lt;p>Provision a CentOS stream 9 image in a Docker container to be the target you will test against&lt;/p>
+&lt;p>To provision the CentOS stream 9 target (or any OS of your choice), run the following command:&lt;/p>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">pdk bundle &lt;span style="color:#8be9fd;font-style:italic">exec&lt;/span> rake &lt;span style="color:#f1fa8c">&amp;#39;litmus:provision[docker, litmusimage/centos:stream9]&amp;#39;&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;blockquote>
 &lt;p>Note: Provisioning is extensible. If your preferred provisioner is missing, let us know by raising an issue on the &lt;a href="https://github.com/puppetlabs/provision/issues">provision repo&lt;/a> or submitting a &lt;a href="https://github.com/puppetlabs/provision/pulls">PR&lt;/a>.&lt;/p>
 &lt;/blockquote>
 &lt;p>The last lines of the output should look like:&lt;/p>
-&lt;pre>&lt;code>Provisioning centos:7 using docker provisioner.[✔]
-localhost:2222, centos:7
-&lt;/code>&lt;/pre>&lt;p>To check that it worked, run &lt;code>docker ps&lt;/code> and you should see output similar to:&lt;/p>
-&lt;pre>&lt;code>CONTAINER ID IMAGE COMMAND CREATED STATUS PORTS NAMES
-7b12b616cf65 centos:7 &amp;quot;/bin/bash&amp;quot; 4 minutes ago Up 4 minutes 0.0.0.0:2222-&amp;gt;22/tcp centos_7-2222
-&lt;/code>&lt;/pre>&lt;p>Note that the provisioned targets will be in the &lt;code>spec/fixtures/litmus_inventory.yaml&lt;/code> file. Litmus creates this file in your working directory. If you run &lt;code>cat spec/fixtures/litmus_inventory.yaml&lt;/code>, you should see the targets you just created. For example:&lt;/p>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">Provisioning centos:stream9 using docker provisioner.&lt;span style="color:#ff79c6">[&lt;/span>✔&lt;span style="color:#ff79c6">]&lt;/span>
+localhost:2222, centos:stream9
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>To check that it worked, run &lt;code>docker ps&lt;/code> and you should see output similar to:&lt;/p>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">CONTAINER ID IMAGE COMMAND CREATED STATUS PORTS NAMES
+7b12b616cf65 centos:stream9 &lt;span style="color:#f1fa8c">&amp;#34;/bin/bash&amp;#34;&lt;/span> &lt;span style="color:#bd93f9">4&lt;/span> minutes ago Up &lt;span style="color:#bd93f9">4&lt;/span> minutes 0.0.0.0:2222-&amp;gt;22/tcp centos_stream9-2222
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>Note that the provisioned targets will be in the &lt;code>spec/fixtures/litmus_inventory.yaml&lt;/code> file. Litmus creates this file in your working directory. If you run &lt;code>cat spec/fixtures/litmus_inventory.yaml&lt;/code>, you should see the targets you just created. For example:&lt;/p>
 &lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-yaml" data-lang="yaml">&lt;span style="color:#6272a4"># litmus_inventory.yaml&lt;/span>
 ---
 &lt;span style="color:#ff79c6">version&lt;/span>: &lt;span style="color:#bd93f9">2&lt;/span>
@@ -70,95 +70,95 @@ localhost:2222, centos:7
 &lt;span style="color:#ff79c6">host-key-check&lt;/span>: &lt;span style="color:#ff79c6">false&lt;/span>
 &lt;span style="color:#ff79c6">facts&lt;/span>:
 &lt;span style="color:#ff79c6">provisioner&lt;/span>: docker
-&lt;span style="color:#ff79c6">container_name&lt;/span>: centos_7-2222
-&lt;span style="color:#ff79c6">platform&lt;/span>: centos:7
+&lt;span style="color:#ff79c6">container_name&lt;/span>: centos_stream9-2222
+&lt;span style="color:#ff79c6">platform&lt;/span>: centos:stream9
 - &lt;span style="color:#ff79c6">name&lt;/span>: winrm_nodes
 &lt;span style="color:#ff79c6">targets&lt;/span>: []
 &lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="4-install-puppet-agent-on-your-target">4. Install Puppet agent on your target&lt;/h2>
 &lt;p>To install the latest version of Puppet agent on the CentOS Docker image, run the following command:&lt;/p>
-&lt;pre>&lt;code>pdk bundle exec rake litmus:install_agent
-&lt;/code>&lt;/pre>&lt;p>Use Bolt to verify that you have installed the agent on the target. Run the following command:&lt;/p>
-&lt;pre>&lt;code>pdk bundle exec bolt command run 'puppet --version' --targets localhost:2222 --inventoryfile spec/fixtures/litmus_inventory.yaml
-&lt;/code>&lt;/pre>&lt;p>Note that &lt;code>localhost:2222&lt;/code> is the name of the node in the spec/fixtures/litmus_inventory.yaml file. You should see output with the version of the Puppet agent that was installed:&lt;/p>
-&lt;pre>&lt;code>bolt command run 'puppet --version' --targets localhost:2222 --inventoryfile spec/fixtures/litmus_inventory.yaml
-&lt;/code>&lt;/pre>&lt;p>Running the command will produce output similar to this:&lt;/p>
-&lt;pre>&lt;code>Started on localhost:2222...
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">pdk bundle &lt;span style="color:#8be9fd;font-style:italic">exec&lt;/span> rake litmus:install_agent
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>Use Bolt to verify that you have installed the agent on the target. Run the following command:&lt;/p>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">pdk bundle &lt;span style="color:#8be9fd;font-style:italic">exec&lt;/span> bolt &lt;span style="color:#8be9fd;font-style:italic">command&lt;/span> run &lt;span style="color:#f1fa8c">&amp;#39;puppet --version&amp;#39;&lt;/span> --targets localhost:2222 --inventoryfile spec/fixtures/litmus_inventory.yaml
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>Note that &lt;code>localhost:2222&lt;/code> is the name of the node in the spec/fixtures/litmus_inventory.yaml file. You should see output with the version of the Puppet agent that was installed:&lt;/p>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">bolt &lt;span style="color:#8be9fd;font-style:italic">command&lt;/span> run &lt;span style="color:#f1fa8c">&amp;#39;puppet --version&amp;#39;&lt;/span> --targets localhost:2222 --inventoryfile spec/fixtures/litmus_inventory.yaml
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>Running the command will produce output similar to this:&lt;/p>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">Started on localhost:2222...
 Finished on localhost:2222:
 STDOUT:
 6.13.0
-Successful on 1 target: localhost:2222
-Ran on 1 target in 1.72 sec
-&lt;/code>&lt;/pre>&lt;p>If you want to install a specific version of puppet you can use the following command:&lt;/p>
-&lt;pre>&lt;code>pdk bundle exec rake 'litmus:install_agent[puppet6]
-&lt;/code>&lt;/pre>&lt;p>Examples of other versions you can pass in are: puppet6-nightly, puppet7, puppet7-nightly.&lt;/p>
-&lt;h2 id="5-install-the-motd-module-on-the-centos-image">5. Install the MoTD module on the CentOS image.&lt;/h2>
+Successful on &lt;span style="color:#bd93f9">1&lt;/span> target: localhost:2222
+Ran on &lt;span style="color:#bd93f9">1&lt;/span> target in 1.72 sec
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>If you want to install a specific version of puppet you can use the following command:&lt;/p>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">pdk bundle &lt;span style="color:#8be9fd;font-style:italic">exec&lt;/span> rake &amp;#39;litmus:install_agent&lt;span style="color:#ff79c6">[&lt;/span>puppet8-nightly&lt;span style="color:#ff79c6">]&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>Examples of other versions you can pass in are: &amp;lsquo;puppet&amp;rsquo;, &amp;lsquo;puppet-nightly&amp;rsquo;, &amp;lsquo;puppet7&amp;rsquo;, &amp;lsquo;puppet7-nightly&amp;rsquo;.&lt;/p>
+&lt;h2 id="5-install-the-motd-module-on-the-centos-image">5. Install the MoTD module on the CentOS image&lt;/h2>
 &lt;p>To install the MoTD module on the CentOS image, run the following command from inside your working directory:&lt;/p>
-&lt;pre>&lt;code>pdk bundle exec rake litmus:install_module
-&lt;/code>&lt;/pre>&lt;p>&lt;em>Note: If you are interactively modifying code and testing, this step must be run after your changes are made and before you run your tests.&lt;/em>&lt;/p>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">pdk bundle &lt;span style="color:#8be9fd;font-style:italic">exec&lt;/span> rake litmus:install_module
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>&lt;em>Note: If you are interactively modifying code and testing, this step must be run after your changes are made and before you run your tests.&lt;/em>&lt;/p>
 &lt;p>You will see output similar to:&lt;/p>
-&lt;pre>&lt;code>➜ puppetlabs-motd git:(main) pdk bundle exec rake litmus:install_module
-pdk (INFO): Using Ruby 2.6.3
-pdk (INFO): Using Puppet 7.7.0
-Building '/Users/paula/workspace/puppetlabs-mysql' into '/Users/paula/workspace/puppetlabs-motd/pkg'
-Built '/Users/paula/workspace/puppetlabs-motd/pkg/puppetlabs-motd-11.0.3.tar.gz'
-Installed '/Users/paula/workspace/puppetlabs-motd/pkg/puppetlabs-motd-11.0.3.tar.gz' on
-&lt;/code>&lt;/pre>&lt;p>Use Bolt to verify that you have installed the MoTD module. Run the following command:&lt;/p>
-&lt;pre>&lt;code>pdk bundle exec bolt command run 'puppet module list' --targets localhost:2222 -i spec/fixtures/litmus_inventory.yaml
-&lt;/code>&lt;/pre>&lt;p>The output should look similar to:&lt;/p>
-&lt;pre>&lt;code>Started on localhost...
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">➜ puppetlabs-motd git:&lt;span style="color:#ff79c6">(&lt;/span>main&lt;span style="color:#ff79c6">)&lt;/span> pdk bundle &lt;span style="color:#8be9fd;font-style:italic">exec&lt;/span> rake litmus:install_module
+pdk &lt;span style="color:#ff79c6">(&lt;/span>INFO&lt;span style="color:#ff79c6">)&lt;/span>: Using Ruby 3.2.0
+pdk &lt;span style="color:#ff79c6">(&lt;/span>INFO&lt;span style="color:#ff79c6">)&lt;/span>: Using Puppet 8.1.0
+Building &lt;span style="color:#f1fa8c">&amp;#39;/Users/paula/workspace/puppetlabs-mysql&amp;#39;&lt;/span> into &lt;span style="color:#f1fa8c">&amp;#39;/Users/paula/workspace/puppetlabs-motd/pkg&amp;#39;&lt;/span>
+Built &lt;span style="color:#f1fa8c">&amp;#39;/Users/paula/workspace/puppetlabs-motd/pkg/puppetlabs-motd-11.0.3.tar.gz&amp;#39;&lt;/span>
+Installed &lt;span style="color:#f1fa8c">&amp;#39;/Users/paula/workspace/puppetlabs-motd/pkg/puppetlabs-motd-11.0.3.tar.gz&amp;#39;&lt;/span> on
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>Use Bolt to verify that you have installed the MoTD module. Run the following command:&lt;/p>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">pdk bundle &lt;span style="color:#8be9fd;font-style:italic">exec&lt;/span> bolt &lt;span style="color:#8be9fd;font-style:italic">command&lt;/span> run &lt;span style="color:#f1fa8c">&amp;#39;puppet module list&amp;#39;&lt;/span> --targets localhost:2222 -i spec/fixtures/litmus_inventory.yaml
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>The output should look similar to:&lt;/p>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">Started on localhost...
 Finished on localhost:
 STDOUT:
 /etc/puppetlabs/code/environments/production/modules
-├── puppetlabs-motd (v2.1.2)
-├── puppetlabs-registry (v2.1.0)
-├── puppetlabs-stdlib (v5.2.0)
-└── puppetlabs-translate (v1.2.0)
-/etc/puppetlabs/code/modules (no modules installed)
-/opt/puppetlabs/puppet/modules (no modules installed)
-Successful on 1 node: localhost:2222
-Ran on 1 node in 1.11 seconds
+├── puppetlabs-motd &lt;span style="color:#ff79c6">(&lt;/span>v2.1.2&lt;span style="color:#ff79c6">)&lt;/span>
+├── puppetlabs-registry &lt;span style="color:#ff79c6">(&lt;/span>v2.1.0&lt;span style="color:#ff79c6">)&lt;/span>
+├── puppetlabs-stdlib &lt;span style="color:#ff79c6">(&lt;/span>v5.2.0&lt;span style="color:#ff79c6">)&lt;/span>
+└── puppetlabs-translate &lt;span style="color:#ff79c6">(&lt;/span>v1.2.0&lt;span style="color:#ff79c6">)&lt;/span>
+/etc/puppetlabs/code/modules &lt;span style="color:#ff79c6">(&lt;/span>no modules installed&lt;span style="color:#ff79c6">)&lt;/span>
+/opt/puppetlabs/puppet/modules &lt;span style="color:#ff79c6">(&lt;/span>no modules installed&lt;span style="color:#ff79c6">)&lt;/span>
+Successful on &lt;span style="color:#bd93f9">1&lt;/span> node: localhost:2222
+Ran on &lt;span style="color:#bd93f9">1&lt;/span> node in 1.11 seconds
 Started on localhost:2222...
 Finished on localhost:2222:
 STDOUT:
 /etc/puppetlabs/code/environments/production/modules
-├── puppetlabs-motd (v4.1.0)
-├── puppetlabs-registry (v3.1.0)
-├── puppetlabs-stdlib (v6.2.0)
-└── puppetlabs-translate (v2.1.0)
-/etc/puppetlabs/code/modules (no modules installed)
-/opt/puppetlabs/puppet/modules (no modules installed)
-Successful on 1 target: localhost:2222
-Ran on 1 target in 1.77 sec
-&lt;/code>&lt;/pre>&lt;p>Note that you have also installed the MoTD module&amp;rsquo;s dependent modules.&lt;/p>
+├── puppetlabs-motd &lt;span style="color:#ff79c6">(&lt;/span>v4.1.0&lt;span style="color:#ff79c6">)&lt;/span>
+├── puppetlabs-registry &lt;span style="color:#ff79c6">(&lt;/span>v3.1.0&lt;span style="color:#ff79c6">)&lt;/span>
+├── puppetlabs-stdlib &lt;span style="color:#ff79c6">(&lt;/span>v6.2.0&lt;span style="color:#ff79c6">)&lt;/span>
+└── puppetlabs-translate &lt;span style="color:#ff79c6">(&lt;/span>v2.1.0&lt;span style="color:#ff79c6">)&lt;/span>
+/etc/puppetlabs/code/modules &lt;span style="color:#ff79c6">(&lt;/span>no modules installed&lt;span style="color:#ff79c6">)&lt;/span>
+/opt/puppetlabs/puppet/modules &lt;span style="color:#ff79c6">(&lt;/span>no modules installed&lt;span style="color:#ff79c6">)&lt;/span>
+Successful on &lt;span style="color:#bd93f9">1&lt;/span> target: localhost:2222
+Ran on &lt;span style="color:#bd93f9">1&lt;/span> target in 1.77 sec
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>Note that you have also installed the MoTD module&amp;rsquo;s dependent modules.&lt;/p>
 &lt;h2 id="6-run-the-motd-acceptance-tests">6. Run the MoTD acceptance tests&lt;/h2>
 &lt;p>To run acceptance tests with Litmus, run the following command from your working directory:&lt;/p>
-&lt;pre>&lt;code>pdk bundle exec rake litmus:acceptance:parallel
-&lt;/code>&lt;/pre>&lt;p>This command executes the acceptance tests in the &lt;a href="https://github.com/puppetlabs/puppetlabs-motd/tree/main/spec/acceptance">acceptance folder&lt;/a> of the module. If the tests have run successfully, you will see output similar to (Note it will look like it has stalled but is actually running tests in the background, please be patient and the output will appear when the tests are complete:&lt;/p>
-&lt;pre>&lt;code>+ [✔] Running against 1 targets.
-|__ [✔] localhost:2222, centos:7
-================
-localhost:2222, centos:7
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">pdk bundle &lt;span style="color:#8be9fd;font-style:italic">exec&lt;/span> rake litmus:acceptance:parallel
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>This command executes the acceptance tests in the &lt;a href="https://github.com/puppetlabs/puppetlabs-motd/tree/main/spec/acceptance">acceptance folder&lt;/a> of the module. If the tests have run successfully, you will see output similar to (Note it will look like it has stalled but is actually running tests in the background, please be patient and the output will appear when the tests are complete:&lt;/p>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">+ &lt;span style="color:#ff79c6">[&lt;/span>✔&lt;span style="color:#ff79c6">]&lt;/span> Running against &lt;span style="color:#bd93f9">1&lt;/span> targets.
+|__ &lt;span style="color:#ff79c6">[&lt;/span>✔&lt;span style="color:#ff79c6">]&lt;/span> localhost:2222, centos:stream9
+&lt;span style="color:#ff79c6">================&lt;/span>
+localhost:2222, centos:stream9
 ......
-Finished in 42.95 seconds (files took 10.15 seconds to load)
-6 examples, 0 failures
-pid 1476 exit 0
-Successful on 1 nodes: [&amp;quot;localhost:2222, centos:7&amp;quot;]
-&lt;/code>&lt;/pre>&lt;h2 id="7-remove-the-docker-image">7. Remove the Docker image.&lt;/h2>
+Finished in 42.95 seconds &lt;span style="color:#ff79c6">(&lt;/span>files took 10.15 seconds to load&lt;span style="color:#ff79c6">)&lt;/span>
+&lt;span style="color:#bd93f9">6&lt;/span> examples, &lt;span style="color:#bd93f9">0&lt;/span> failures
+pid &lt;span style="color:#bd93f9">1476&lt;/span> &lt;span style="color:#8be9fd;font-style:italic">exit&lt;/span> &lt;span style="color:#bd93f9">0&lt;/span>
+Successful on &lt;span style="color:#bd93f9">1&lt;/span> nodes: &lt;span style="color:#ff79c6">[&lt;/span>&lt;span style="color:#f1fa8c">&amp;#34;localhost:2222, centos:stream9&amp;#34;&lt;/span>&lt;span style="color:#ff79c6">]&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="7-remove-the-docker-image">7. Remove the Docker image&lt;/h2>
 &lt;p>Now that you have completed your tests, you can remove the Docker image with the Litmus tear down command:&lt;/p>
-&lt;pre>&lt;code>pdk bundle exec rake litmus:tear_down
-&lt;/code>&lt;/pre>&lt;p>You should see JSON output, similar to:&lt;/p>
-&lt;pre>&lt;code>localhost:2222: success
-&lt;/code>&lt;/pre>&lt;p>To verify that the target has been removed, run &lt;code>docker ps&lt;/code> from the command line. You should see that it&amp;rsquo;s no longer running.&lt;/p>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">pdk bundle &lt;span style="color:#8be9fd;font-style:italic">exec&lt;/span> rake litmus:tear_down
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>You should see JSON output, similar to:&lt;/p>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">localhost:2222: success
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>To verify that the target has been removed, run &lt;code>docker ps&lt;/code> from the command line. You should see that it&amp;rsquo;s no longer running.&lt;/p>
 &lt;h2 id="next-steps">Next steps&lt;/h2>
 &lt;p>The MoTD shows you how to use Litmus to acceptance test an existing module. As you scale up your acceptance testing, you will need to write your own acceptance tests. Try out the following:&lt;/p>
 &lt;ul>
-&lt;li>Provision more than one system, for example, &lt;code>pdk bundle exec rake 'litmus:provision[docker, centos:6]'&lt;/code>. Note that you will need to re-run the &lt;code>install_agent&lt;/code> and &lt;code>install_module&lt;/code> command if you want to run tests.&lt;/li>
+&lt;li>Provision more than one system, for example, &lt;code>pdk bundle exec rake 'litmus:provision[docker, litmusimage/debian:12]'&lt;/code>. Note that you will need to re-run the &lt;code>install_agent&lt;/code> and &lt;code>install_module&lt;/code> command if you want to run tests.&lt;/li>
 &lt;li>Look at the inventory file and take note of the ssh connection information&lt;/li>
 &lt;li>ssh into the CentOS box when you know the password, for example, &lt;code>ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no root@localhost -p 2222&lt;/code>, or use Bolt as shown in the example.&lt;/li>
-&lt;li>ssh into the CentOS box without a password, run &lt;code>docker ps&lt;/code>, take note of the Container Name and then run &lt;code>docker exec -it litmusimage_centos_7-2222 '/bin/bash'&lt;/code> in this example litmusimage_centos_7-2222 is the Container Name.&lt;/li>
+&lt;li>ssh into the CentOS box without a password, run &lt;code>docker ps&lt;/code>, take note of the Container Name and then run &lt;code>docker exec -it litmusimage_centos_stream9-2222 '/bin/bash'&lt;/code> in this example litmusimage_centos_stream9-2222 is the Container Name.&lt;/li>
 &lt;/ul>
 &lt;blockquote>
-&lt;p>Note: We have moved all our PR testing to public pipelines to make contributing to Puppet supported modules a better experience. Check out our &lt;a href="https://github.com/puppetlabs/puppetlabs-apache/pull/2141">PR testing matrix&lt;/a> Github Actions. All of our testing is now ran in the one place.&lt;/p>
+&lt;p>Note: We have moved all our PR testing to public pipelines to make contributing to Puppet supported modules a better experience. Check out our &lt;a href="https://github.com/puppetlabs/cat-github-actions/tree/main/.github/workflows">Github Action templates&lt;/a>. All of our testing is now ran in the one place.&lt;/p>
 &lt;/blockquote></description></item><item><title>Docs: Example tests</title><link>https://puppetlabs.github.io/content-and-tooling-team/docs/litmus/usage/testing/litmus-test-examples/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://puppetlabs.github.io/content-and-tooling-team/docs/litmus/usage/testing/litmus-test-examples/</guid><description>
 &lt;p>These are some common examples you can use in your tests. Take note of the differences between beaker-rspec style testing and Litmus.&lt;/p>
 &lt;h2 id="testing-puppet-code">Testing Puppet code&lt;/h2>
@@ -203,4 +203,4 @@ its(&lt;span style="color:#f1fa8c">:stderr&lt;/span>) { should eq &lt;span style
 &lt;p>There is a known issue when running certain commands from within a pry session. To debug tests, use the following pry-byebug gem:&lt;/p>
 &lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-ruby" data-lang="ruby">gem &lt;span style="color:#f1fa8c">&amp;#39;pry-byebug&amp;#39;&lt;/span>, &lt;span style="color:#f1fa8c">&amp;#39;&amp;gt; 3.4.3&amp;#39;&lt;/span>
 &lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="setting-up-travis-and-appveyor">Setting up Travis and Appveyor&lt;/h2>
-&lt;p>To see this running on CI, enable the &lt;code>use_litmus&lt;/code> flags for Travis CI and/or Appveyor. See the &lt;a href="https://github.com/puppetlabs/pdk-templates#travisyml">pdk-templates docs&lt;/a> for details and additional options.&lt;/p></description></item></channel></rss>
+&lt;p>To see this running on CI, enable the &lt;code>use_litmus&lt;/code> flags for Travis CI and/or Appveyor.&lt;/p></description></item></channel></rss>

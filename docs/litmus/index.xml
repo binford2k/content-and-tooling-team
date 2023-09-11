@@ -101,7 +101,7 @@ There is currently no reason to consider alternatives to Bolt.&lt;/p>
 &lt;h2 id="configuration">Configuration&lt;/h2>
 &lt;p>Configuration for Litmus currently is spread over several files.
 The &lt;code>provision.yaml&lt;/code> contains various lists of platforms to target for tests.
-The CI job setup (usually in &lt;code>.travis.yml&lt;/code>, &lt;code>appveyor.yml&lt;/code> or similar) contains the overall sequencing of steps for testing.
+The CI job setup (usually in &lt;code>.travis.yml&lt;/code>, &lt;code>appveyor.yml&lt;/code>, &lt;code>Github Actions&lt;/code> or similiar) contains the overall sequencing of steps for testing.
 This setup is usually the same everywhere and is encoded in pdk-templates.
 There are slight variations to choose the puppet version and platform combinations from &lt;code>provision.yaml&lt;/code>.&lt;/p>
 &lt;p>Last but not least, transient state and roles of provisioned systems is stored in Bolt&amp;rsquo;s &lt;code>inventory.yaml&lt;/code>.
