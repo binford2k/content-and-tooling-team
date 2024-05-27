@@ -45,6 +45,7 @@ to deattach &amp;lt;ctrl + p&amp;gt; &lt;span style="color:#ff79c6">then&lt;/spa
 &lt;p>Using the Litmus &lt;a href="https://github.com/puppetlabs/provision">provision&lt;/a> command, you can spin up Docker containers, vagrant boxes or VMs in private clouds, such as vmpooler.&lt;/p>
 &lt;p>For example:&lt;/p>
 &lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-bash" data-lang="bash">pdk bundle &lt;span style="color:#8be9fd;font-style:italic">exec&lt;/span> rake &lt;span style="color:#f1fa8c">&amp;#39;litmus:provision[vmpooler, redhat-9-x86_64]&amp;#39;&lt;/span>
+pdk bundle &lt;span style="color:#8be9fd;font-style:italic">exec&lt;/span> rake &lt;span style="color:#f1fa8c">&amp;#39;litmus:provision[lxd, images:debian/11]&amp;#39;&lt;/span>
 pdk bundle &lt;span style="color:#8be9fd;font-style:italic">exec&lt;/span> rake &lt;span style="color:#f1fa8c">&amp;#39;litmus:provision[docker, litmusimage/ubuntu:22.04]&amp;#39;&lt;/span>
 pdk bundle &lt;span style="color:#8be9fd;font-style:italic">exec&lt;/span> rake &lt;span style="color:#f1fa8c">&amp;#39;litmus:provision[vagrant, gusztavvargadr/windows-server]&amp;#39;&lt;/span>
 &lt;/code>&lt;/pre>&lt;/div>&lt;blockquote>
@@ -56,6 +57,8 @@ pdk bundle &lt;span style="color:#8be9fd;font-style:italic">exec&lt;/span> rake 
 &lt;span style="color:#ff79c6">version&lt;/span>: &lt;span style="color:#bd93f9">2&lt;/span>
 &lt;span style="color:#ff79c6">groups&lt;/span>:
 - &lt;span style="color:#ff79c6">name&lt;/span>: docker_nodes
+&lt;span style="color:#ff79c6">targets&lt;/span>: []
+- &lt;span style="color:#ff79c6">name&lt;/span>: lxd_nodes
 &lt;span style="color:#ff79c6">targets&lt;/span>: []
 - &lt;span style="color:#ff79c6">name&lt;/span>: ssh_nodes
 &lt;span style="color:#ff79c6">targets&lt;/span>:
@@ -77,7 +80,7 @@ pdk bundle &lt;span style="color:#8be9fd;font-style:italic">exec&lt;/span> rake 
 &lt;p>Note that you can test some modules against localhost — the machine you are running your test from. Note that this is only recommended if you are familiar with the code base, as tests may have unexpected side effects on your local machine. To run a test against localhost, see &lt;a href="#test">Run the tests: &amp;lsquo;rake litmus:parallel&amp;rsquo;&lt;/a>&lt;/p>
 &lt;h3 id="testing-services">Testing services&lt;/h3>
 &lt;p>For testing services that require a service manager (like systemd), the default Docker images might not be enough. In this case, there is a collection of Docker images, with a service manager enabled, based on our &lt;a href="https://github.com/puppetlabs/litmusimage">litmus image repository&lt;/a>. For available images, see the &lt;a href="https://hub.docker.com/u/litmusimage">docker hub&lt;/a>.&lt;/p>
-&lt;p>Alternatively, you can use a dedicated VM that uses another provisioner, for example vmpooler or vagrant.&lt;/p>
+&lt;p>Alternatively, you can use a dedicated VM that uses another provisioner, for example vmpooler, vagrant or lxd.&lt;/p>
 &lt;h3 id="provisioning-via-yaml">Provisioning via YAML&lt;/h3>
 &lt;p>In addition to directly provisioning one or more machines using &lt;code>litmus:provision&lt;/code>, you can also define one or more sets of nodes in a &lt;code>provision.yaml&lt;/code> file and use that to provision targets.&lt;/p>
 &lt;p>An example of a &lt;code>provision.yaml&lt;/code> defining a single node:&lt;/p>
@@ -104,6 +107,11 @@ pdk bundle &lt;span style="color:#8be9fd;font-style:italic">exec&lt;/span> rake 
 &lt;span style="color:#ff79c6">vagrant&lt;/span>:
 &lt;span style="color:#ff79c6">provisioner&lt;/span>: vagrant
 &lt;span style="color:#ff79c6">images&lt;/span>: [&lt;span style="color:#f1fa8c">&amp;#39;centos/stream9&amp;#39;&lt;/span>, &lt;span style="color:#f1fa8c">&amp;#39;generic/ubuntu2204&amp;#39;&lt;/span>, &lt;span style="color:#f1fa8c">&amp;#39;gusztavvargadr/windows-server&amp;#39;&lt;/span>]
+&lt;span style="color:#ff79c6">lxd&lt;/span>:
+&lt;span style="color:#ff79c6">provisioner&lt;/span>: lxd
+&lt;span style="color:#ff79c6">images&lt;/span>: [&lt;span style="color:#f1fa8c">&amp;#39;images:ubuntu/22.04&amp;#39;&lt;/span>, &lt;span style="color:#f1fa8c">&amp;#39;images:centos/7&amp;#39;&lt;/span>]
+&lt;span style="color:#ff79c6">params&lt;/span>:
+&lt;span style="color:#ff79c6">vm&lt;/span>: &lt;span style="color:#ff79c6">true&lt;/span>
 &lt;span style="color:#ff79c6">docker_deb&lt;/span>:
 &lt;span style="color:#ff79c6">provisioner&lt;/span>: docker
 &lt;span style="color:#ff79c6">images&lt;/span>: [&lt;span style="color:#f1fa8c">&amp;#39;litmusimage/debian:10&amp;#39;&lt;/span>, &lt;span style="color:#f1fa8c">&amp;#39;litmusimage/debian:11&amp;#39;&lt;/span>, &lt;span style="color:#f1fa8c">&amp;#39;litmusimage/debian:12&amp;#39;&lt;/span>]

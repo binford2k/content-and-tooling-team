@@ -60,6 +60,7 @@ Helper&lt;span style="color:#ff79c6">.&lt;/span>instance&lt;span style="color:#f
 &lt;h4 id="provision">Provision&lt;/h4>
 &lt;p>To provision systems we created a &lt;a href="https://github.com/puppetlabs/provision">module&lt;/a> that will provision containers / images / hardware in ABS (internal to Puppet) and Docker instances. Provision is extensible, so other provisioners can be added - please raise an &lt;a href="https://github.com/puppetlabs/provision/issues">issue&lt;/a> on the Provision repository, or create your own and submit a &lt;a href="https://github.com/puppetlabs/provision/pulls">PR&lt;/a>!&lt;/p>
 &lt;p>rake task -&amp;gt; litmus -&amp;gt; bolt -&amp;gt; provision -&amp;gt; docker
+-&amp;gt; lxd
 -&amp;gt; vagrant
 -&amp;gt; abs (internal)
 -&amp;gt; vmpooler (internal)&lt;/p>
@@ -72,5 +73,6 @@ Helper&lt;span style="color:#ff79c6">.&lt;/span>instance&lt;span style="color:#f
 &lt;p>rake task -&amp;gt; serverspec -&amp;gt; rspec&lt;/p>
 &lt;h4 id="tearing-down-targets">Tearing down targets&lt;/h4>
 &lt;p>rake task -&amp;gt; bolt provision -&amp;gt; docker
+-&amp;gt; lxd
 -&amp;gt; abs (internal)
 -&amp;gt; vmpooler&lt;/p></description></item></channel></rss>

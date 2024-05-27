@@ -33,7 +33,7 @@ It also means that it is easier to replace the parts that did not turn out to fu
 &lt;li>Test Infrastructure:
 &lt;ul>
 &lt;li>puppetlabs-provision module&lt;/li>
-&lt;li>hypervisors: docker, vagrant, vmpooler, abs&lt;/li>
+&lt;li>hypervisors: docker, lxd, vagrant, vmpooler, abs&lt;/li>
 &lt;li>external provisioners: e.g. terraform&lt;/li>
 &lt;li>test systems:
 &lt;ul>
